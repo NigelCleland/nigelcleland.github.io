@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://NigelCleland.github.io/sitemap.xml 
