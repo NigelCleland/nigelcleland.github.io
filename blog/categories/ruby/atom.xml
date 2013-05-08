@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Electric Python]]></title>
-  <link href="http://NigelCleland.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: ruby | Electric Python]]></title>
+  <link href="http://NigelCleland.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://NigelCleland.github.io/"/>
   <updated>2013-05-08T20:20:30+12:00</updated>
   <id>http://NigelCleland.github.io/</id>
@@ -25,30 +25,22 @@ I used rbenv for my installation and a couple issues arose which were a bit of a
 <p>So a couple things. If you are using Ubuntu then you need to use .profile instead of .bash_profile.
 If done right the bottom two lines of the following should be.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cat ~/.profile
-</span><span class='line'>
-</span><span class='line'>export PATH="$HOME/.rbenv/bin:$PATH
-</span><span class='line'>eval "$(rbenv init -)"</span></code></pre></td></tr></table></div></figure>
+<p>```
+cat ~/.profile</p>
 
-
-<p></p>
+<p>export PATH=&ldquo;$HOME/.rbenv/bin:$PATH
+eval &rdquo;$(rbenv init &ndash;)&ldquo;
+```</p>
 
 <p>Another issue which may arise is the difference between the system, and rbenv ruby installation.
 The commands you are looking for here are as follows.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rbenv versions # Will list the installed versions of rbenv
-</span><span class='line'>rbenv local &lt;build&gt; # Will set a local version of ruby for the specific folder
-</span><span class='line'>rbenv global &lt;build&gt; # Specify the global build of ruby to use.
-</span><span class='line'>ruby --version # List the current version of ruby</span></code></pre></td></tr></table></div></figure>
-
+<p><code>
+rbenv versions # Will list the installed versions of rbenv
+rbenv local &lt;build&gt; # Will set a local version of ruby for the specific folder
+rbenv global &lt;build&gt; # Specify the global build of ruby to use.
+ruby --version # List the current version of ruby
+</code></p>
 
 <p>I recommend playing around with each of these commands until you&rsquo;re comfortable switching between different versions of ruby.
 In my initial installations I was having a lot of difficulty with different versions of ruby in different locations.
