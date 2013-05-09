@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Electric Python</title>
+  <title>Introduction and blog content - Electric Python</title>
   <meta name="author" content="Nigel Cleland">
 
   
@@ -20,7 +20,7 @@ My current research is &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://NigelCleland.github.io">
+  <link rel="canonical" href="http://NigelCleland.github.io/blog/2013/05/09/introduction-and-blog-content">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Electric Python" type="application/atom+xml">
@@ -65,15 +65,12 @@ My current research is &hellip;">
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/05/09/introduction-and-blog-content/">Introduction and Blog Content</a></h1>
+      <h1 class="entry-title">Introduction and Blog Content</h1>
     
     
       <p class="meta">
@@ -96,7 +93,7 @@ My current research is &hellip;">
   </header>
 
 
-  <div class="entry-content"><p>So, first a brief introduction.
+<div class="entry-content"><p>So, first a brief introduction.
 My name is Nigel and I am currently a Ph.D student at the University of Auckland, New Zealand.
 My current research is on market based systems for procuring security (reserve) in electricity markets.
 In particular, I do a substantial amount of data analysis attempting to assess the consequences and frequency of constrained situations.
@@ -123,22 +120,16 @@ In addition, contributing to these by writing about them is something I want to 
 
 <p>Finally, I have no set schedule for updating this blog although I will attempt to do so as frequently as my interest permits.</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/08/setting-up-octopress/">Setting Up Octopress With Ubuntu</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Nigel Cleland</span></span>
+
+      
 
 
 
@@ -150,66 +141,32 @@ In addition, contributing to these by writing about them is something I want to 
   
 
 
-<time datetime="2013-05-08T19:41:00+12:00" pubdate data-updated="true">May 8<span>th</span>, 2013</time>
-        
-      </p>
+<time datetime="2013-05-09T12:43:00+12:00" pubdate data-updated="true">May 9<span>th</span>, 2013</time>
+      
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>Right, so this post will serve as a general overview as to a couple of the difficulties I had when setting up Octopress and Ruby.
-I mainly use Python for my day to day analysis work and as such have little experience with Ruby.
-I used rbenv for my installation and a couple issues arose which were a bit of a pain to sort out as googling appeared to let me down here.</p>
-
-<p>So a couple things. If you are using Ubuntu then you need to use .profile instead of .bash_profile.
-If done right the bottom two lines of the following should be.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cat ~/.profile
-</span><span class='line'>
-</span><span class='line'>export PATH="$HOME/.rbenv/bin:$PATH
-</span><span class='line'>eval "$(rbenv init -)"</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>Another issue which may arise is the difference between the system, and rbenv ruby installation.
-The commands you are looking for here are as follows.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rbenv versions # Will list the installed versions of rbenv
-</span><span class='line'>rbenv local &lt;build&gt; # Will set a local version of ruby for the specific folder
-</span><span class='line'>rbenv global &lt;build&gt; # Specify the global build of ruby to use.
-</span><span class='line'>ruby --version # List the current version of ruby</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I recommend playing around with each of these commands until you&rsquo;re comfortable switching between different versions of ruby.
-In my initial installations I was having a lot of difficulty with different versions of ruby in different locations.
-Generally, just a major annoyance to say the least.</p>
-
-<p>Once these two issues were sorted out installation was pretty simple overall.
-Hopefully if anyone else is having similar difficulties this post may point them in the right direction.</p>
-
-<p>I&rsquo;ll update this post if needed or if I remember something new.</p>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://NigelCleland.github.io/blog/2013/05/09/introduction-and-blog-content/" data-via="" data-counturl="http://NigelCleland.github.io/blog/2013/05/09/introduction-and-blog-content/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/05/08/setting-up-octopress/" title="Previous Post: Setting up Octopress with Ubuntu">&laquo; Setting up Octopress with Ubuntu</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -233,6 +190,7 @@ Hopefully if anyone else is having similar difficulties this post may point them
 
   
 </aside>
+
 
     </div>
   </div>
