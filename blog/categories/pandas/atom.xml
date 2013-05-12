@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: pandas | Electric Python]]></title>
+  <link href="http://NigelCleland.github.io/blog/categories/pandas/atom.xml" rel="self"/>
+  <link href="http://NigelCleland.github.io/"/>
+  <updated>2013-05-12T13:53:18+12:00</updated>
+  <id>http://NigelCleland.github.io/</id>
+  <author>
+    <name><![CDATA[Nigel Cleland]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Selecting Data with Pandas]]></title>
+    <link href="http://NigelCleland.github.io/blog/2013/05/12/selecting-data-with-pandas/"/>
+    <updated>2013-05-12T13:12:00+12:00</updated>
+    <id>http://NigelCleland.github.io/blog/2013/05/12/selecting-data-with-pandas</id>
+    <content type="html"><![CDATA[<p>As part of my job I need to do a large amount of sample analysis, and visualisation of small subsets of data. This requires a large quantity of iteration, trial and error and repetitive coding. Something we all wish we could avoid, yet sometimes can&rsquo;t. To give a practical example, I often need to work with half hourly data, for a wide range of individual metrics which may have similarities. What I need to do, is isolate this data in various ways.</p>
+
+<!-- more -->
+
+
+<p>Now, here we introduce pandas. Pandas is an analysis library for Python built on top of numpy for fast merges, joins and analysis. It is an essential part of my day to day work and if you have to work with any decent amount of data I highly recommend using it. However, there is one slight issue I&rsquo;ve had with it. Selecting small subsets of data in a simple fashion. To give an example, in python, to iterate we can use:</p>
+
+<p>``` python
+for item in container:</p>
+
+<pre><code>if item in subset:
+        print item
+</code></pre>
+
+<p>```</p>
+
+<p>Here the key is that we&rsquo;re looking at the entire container, and then assessing whether our item fits that subset. However, in pandas it isn&rsquo;t so easy.
+In Pandas, to select a subset of the data we create an array of booleans and then apply this to the dataframe as follows:</p>
+
+<p>``` python
+import pandas as pd
+import numpy as np</p>
+
+<p>df = pd.DataFrame(np.random.random(10, 4), columns=[&ldquo;A&rdquo;, &ldquo;B&rdquo;, &ldquo;C&rdquo;, &ldquo;D&rdquo;])</p>
+
+<p>subset = df[(df[&ldquo;A&rdquo;] &lt;= 0.5) &amp; (df[&ldquo;B&rdquo;] >= 0.2)]
+```
+In this example, we are selecting a subset of our data which satisfies the condition of column A being less than or equal to 0.5 and column B greater than or equal to 0.2. (Note, the brackets around each statement are required.</p>
+
+<p>However, this syntax, while clear for simple examples does start to break down at higher orders. For example, let&rsquo;s say we had qualitative values in our data frame and we want to select a small subset of them. We cannot use the in operator, or a multiple equal operator. Instead, we need to use the or operator.</p>
+
+<p>``` python</p>
+
+<h1>Note this won&rsquo;t work:</h1>
+
+<p>df[df[&ldquo;A&rdquo;] == (0.3, 0.2, 0.7)]</p>
+
+<h1>Require the following:</h1>
+
+<p>df[(df[&ldquo;A&rdquo;] == 0.3) | (df[&ldquo;A&rdquo;] == 0.2) | (df[&ldquo;A&rdquo;] == 0.7)]
+```</p>
+
+<p>As you can see the amount of duplicate code requires continues to increase linearly with each additional item we wish to check. Is there a better way?
+Turns out, maybe.</p>
+
+<p>What I have done is develop a range of common masks and place them in a single <a href="https://github.com/NigelCleland/masks">repository</a> or it may be downloaded using pip</p>
+
+<p><code>
+pip install masks
+</code></p>
+
+<p>To use it, you simply import the masks module after importing pandas and it will apply a number of additional methods to the Series and DataFrame classes in the pandas module. I&rsquo;ve attempted to avoid all known api clashes through the addition of _masks at the end of each function, which should also make the meaning clearer. Using this module our multiple selection example becomes much simpler</p>
+
+<p>``` python
+import pandas as pd
+import masks
+import numpy as np</p>
+
+<p>df = pd.DataFrame(np.arange(30).reshape(10, 3), columns=[&ldquo;A&rdquo;, &ldquo;B&rdquo;, &ldquo;C&rdquo;])</p>
+
+<h1>Use the in_eqmask this mask will return all values which meet the conditions</h1>
+
+<h1>the eqmask instead of just mask is to specify that equality conditions are</h1>
+
+<h1>being introduced</h1>
+
+<p>df.in_eqmask(&ldquo;A&rdquo;, (6, 12, 24))</p>
+
+<h1>Or another simple use case which has frustrated me endlessly in pandas is</h1>
+
+<h1>returning all rows which satisfy a between type condition.</h1>
+
+<p>df[(df[&ldquo;A&rdquo;] >= 0.5) &amp; (df[&ldquo;A&rdquo;] &lt;= 0.7)]
+df.bet_mask(&ldquo;A&rdquo;, (0.5, 0.7))
+```</p>
+
+<p>Which is much much simpler no?</p>
+
+<p>An additional benefit of this is that we are able to chain methods together in order to create the desired subsets. For example.</p>
+
+<p><code>python
+df.ge_mask("A", 5).le_mask("C", 15).ne_mask("B", 10)
+</code></p>
+
+<p>We just applied three different refinements to get all rows of the dataframe where A is greater than 5, C less than 15 and B not equal to 10.</p>
+
+<p>There are a few more complex functions in the module, such as selecting the top, bottom or middle x% of a particular column or columns e.g.</p>
+
+<p>``` python</p>
+
+<h1>Take the rows which satisfy the top 25% of column A, then take the bottom 10% of column B</h1>
+
+<h1>from this subset.</h1>
+
+<p>df.top_mask(&ldquo;A&rdquo;, 25).bot_mask(&ldquo;B&rdquo;, 10)
+```</p>
+
+<p>masks is still a work in progress, however it is usable as is for prototyping and data exploration. There are a number of additional features which are still needed at this stage. There repo is <a href="https://github.com/NigelCleland/masks">here</a> and all contributions/comments are welcome. I&rsquo;m not sure this is the best way to add this functionality, however it has been useful for me in the past and thus I&rsquo;m putting it out there incase anyone else finds it useful.</p>
+]]></content>
+  </entry>
+  
+</feed>
