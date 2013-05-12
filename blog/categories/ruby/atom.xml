@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Electric Python]]></title>
   <link href="http://NigelCleland.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://NigelCleland.github.io/"/>
-  <updated>2013-05-12T13:53:18+12:00</updated>
+  <updated>2013-05-12T13:54:58+12:00</updated>
   <id>http://NigelCleland.github.io/</id>
   <author>
     <name><![CDATA[Nigel Cleland]]></name>
@@ -21,6 +21,9 @@
     <content type="html"><![CDATA[<p>Right, so this post will serve as a general overview as to a couple of the difficulties I had when setting up Octopress and Ruby.
 I mainly use Python for my day to day analysis work and as such have little experience with Ruby.
 I used rbenv for my installation and a couple issues arose which were a bit of a pain to sort out as googling appeared to let me down here.</p>
+
+<!-- more -->
+
 
 <p>So a couple things. If you are using Ubuntu then you need to use .profile instead of .bash_profile.
 If done right the bottom two lines of the following should be.</p>

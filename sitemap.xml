@@ -2,11 +2,11 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://NigelCleland.github.io/blog/2013/05/08/setting-up-octopress/</loc>
-        <lastmod>2013-05-08T20:20:30+12:00</lastmod>
+        <lastmod>2013-05-12T13:54:31+12:00</lastmod>
     </url>
     <url>
         <loc>http://NigelCleland.github.io/blog/2013/05/09/introduction-and-blog-content/</loc>
-        <lastmod>2013-05-09T13:04:11+12:00</lastmod>
+        <lastmod>2013-05-12T13:54:42+12:00</lastmod>
     </url>
     <url>
         <loc>http://NigelCleland.github.io/blog/2013/05/12/selecting-data-with-pandas/</loc>
@@ -18,10 +18,10 @@
     </url>
     <url>
         <loc>http://NigelCleland.github.io/blog/archives/</loc>
-        <lastmod>2013-05-12T13:53:05+12:00</lastmod>
+        <lastmod>2013-05-12T13:54:42+12:00</lastmod>
     </url>
     <url>
         <loc>http://NigelCleland.github.io/</loc>
-        <lastmod>2013-05-12T13:53:05+12:00</lastmod>
+        <lastmod>2013-05-12T13:54:42+12:00</lastmod>
     </url>
 </urlset>

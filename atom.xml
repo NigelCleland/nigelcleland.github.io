@@ -4,7 +4,7 @@
   <title><![CDATA[Electric Python]]></title>
   <link href="http://NigelCleland.github.io/atom.xml" rel="self"/>
   <link href="http://NigelCleland.github.io/"/>
-  <updated>2013-05-12T13:53:18+12:00</updated>
+  <updated>2013-05-12T13:54:58+12:00</updated>
   <id>http://NigelCleland.github.io/</id>
   <author>
     <name><![CDATA[Nigel Cleland]]></name>
@@ -155,6 +155,9 @@ My current research is on market based systems for procuring security (reserve) 
 In particular, I do a substantial amount of data analysis attempting to assess the consequences and frequency of constrained situations.
 I&rsquo;m currently ~1.5 years into this.</p>
 
+<!-- more -->
+
+
 <p>This blog is intended to serve as predominately writing practice, as well as thoughts on technical and esoteric matters.
 I try to use open source software as much as possible in my day to day work with Python, LaTeX and Ubuntu being the main elements.
 I would like to contribute more to open source in the future, however I&rsquo;m not entirely sure on the best way to accomplish this.
@@ -186,6 +189,9 @@ In addition, contributing to these by writing about them is something I want to 
     <content type="html"><![CDATA[<p>Right, so this post will serve as a general overview as to a couple of the difficulties I had when setting up Octopress and Ruby.
 I mainly use Python for my day to day analysis work and as such have little experience with Ruby.
 I used rbenv for my installation and a couple issues arose which were a bit of a pain to sort out as googling appeared to let me down here.</p>
+
+<!-- more -->
+
 
 <p>So a couple things. If you are using Ubuntu then you need to use .profile instead of .bash_profile.
 If done right the bottom two lines of the following should be.</p>
