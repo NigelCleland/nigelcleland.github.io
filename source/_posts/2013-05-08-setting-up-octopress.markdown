@@ -13,6 +13,8 @@ Right, so this post will serve as a general overview as to a couple of the diffi
 I mainly use Python for my day to day analysis work and as such have little experience with Ruby.
 I used rbenv for my installation and a couple issues arose which were a bit of a pain to sort out as googling appeared to let me down here.
 
+<!-- more -->
+
 So a couple things. If you are using Ubuntu then you need to use .profile instead of .bash_profile. 
 If done right the bottom two lines of the following should be.
 
