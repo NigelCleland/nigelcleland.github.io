@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Selecting Data with Pandas"
+title: "Tutorial Series: Selecting Data with Pandas"
 date: 2013-05-12 13:12
 comments: true
 categories: [python, pandas, Data Analysis]
