@@ -4,7 +4,7 @@
   <title><![CDATA[Category: pandas | Electric Python]]></title>
   <link href="http://NigelCleland.github.io/blog/categories/pandas/atom.xml" rel="self"/>
   <link href="http://NigelCleland.github.io/"/>
-  <updated>2013-05-12T13:54:58+12:00</updated>
+  <updated>2013-05-16T13:53:09+12:00</updated>
   <id>http://NigelCleland.github.io/</id>
   <author>
     <name><![CDATA[Nigel Cleland]]></name>
@@ -14,11 +14,131 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Selecting Data with Pandas]]></title>
+    <title type="html"><![CDATA[Tutorial Series: Using pandas groupby to simplify your life]]></title>
+    <link href="http://NigelCleland.github.io/blog/2013/05/16/tutorial-series-using-pandas-groupby-to-simplify-your-life/"/>
+    <updated>2013-05-16T10:40:00+12:00</updated>
+    <id>http://NigelCleland.github.io/blog/2013/05/16/tutorial-series-using-pandas-groupby-to-simplify-your-life</id>
+    <content type="html"><![CDATA[<p>This is the second instalment in a brief series on using the pandas library for data analysis. The general aim of this series to to highlight some of the cool functionality which is in pandas. None of this is revolutionary, however Wes McKinney and the other contributors have made exceptional contributions to the speed and ease of which it is completed.</p>
+
+<p>In this post I&rsquo;m going to over the groupby function. Highlight a couple of the interesting things which you can do with it and generally show how much simpler pandas makes it to accomplish data analysis. I&rsquo;m going to be using a real data set, hydrology data from the last 80 odd years for the New Zealand electricity grid, this dataset has approximately 30,000 data points (1 per day) and is therefore a good size for this work. This post will cover a brief example of using groupby for time series and won&rsquo;t go through any of the more complex functionality and usage which can be developed when working with full DataFrames.</p>
+
+<!-- more -->
+
+
+<p>Right to begin we need to load our data, I&rsquo;m going to use a custom module which makes this a bit easier called <a href="http://github.com/NigelCleland/nzem">nzem</a>. The nzem library is my own personal library which simplifies some of the initial data analysis I use most frequently. For example, the following will load hydrology data and automatically parse the relatively disgusting date format which the csv file has. Note, that the nzem module automatically loads and initlises the <a href="http://github.com/NigelCleland/masks">masks</a> library which I discussed in my last post.</p>
+
+<p>``` python</p>
+
+<h1>Load modules</h1>
+
+<p>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import nzem</p>
+
+<h1>Load the data, niwa_date is a specific format not recognised by the dateutil.parser utility</h1>
+
+<p>hydro_data = nzem.load_csvfile(&lsquo;hydro_data/Hydro_Lake_Data.csv&rsquo;, niwa_date=True)</p>
+
+<h1>Get a single column, daily_level will then be a series</h1>
+
+<p>daily_level = hydro_data[&ldquo;Daily Stored&rdquo;]</p>
+
+<h1>Confirmation that we are working with a time series</h1>
+
+<p>type(daily_level) # pandas.core.series.Series
+type(daily_level.index) # pandas.tseries.index.DatetimeIndex
+```</p>
+
+<p>Now, we have a single series which contains the daily storage level of the entire countries hydro lakes (in GWh).</p>
+
+<p>Now, on to using the group by functionality. The pandas <a href="http://pandas.pydata.org/pandas-docs/stable/groupby.html">groupby</a> library has two primary uses. Aggregations and Transformations. An Aggregation will return a new series with indices set by the groupby keys.
+A Transformation will return the original series transformed according to the predefined function.</p>
+
+<p>This is best demonstrated by example</p>
+
+<p>``` python</p>
+
+<h1>Aggregation</h1>
+
+<h1>Group by the day of year, take the mean of these points</h1>
+
+<p>doy = lambda x: x.dayofyear
+doy_mean = daily_level.groupby(doy).aggregate(np.mean) # Note you don&rsquo;t need to use the () at the end of np.mean.</p>
+
+<p>len(doy_mean) # 366, one for each day</p>
+
+<h1>Transformation</h1>
+
+<h1>Group by the day of year, but subtract the mean from each point</h1>
+
+<p>relative_mean = lambda x: x &ndash; np.mean(x)
+doy_rel_mean = daily_level.groupby(doy).transform(relative_mean)</p>
+
+<p>len(doy_rel_mean) == len(daily_level) # returns True
+```</p>
+
+<p>Now, we need to cover where we use each one. The aggregations are useful when what we are interested in is the summary statistic, and we do not intend to remerge it with our dataframe. For example, if we wanted to remerge it we would have to go through a bunch of steps which would be quite painful. The transform function on the other hand should be used when you want a data point equivalent to each of the original series/dataframe.</p>
+
+<p>For example, in the above example the transform example can be used to create a repeating series which we then apply against our raw data. A visual explanation as to why this is beneficial may be most appropriate.
+I&rsquo;m not going to attempt to make this figure extremely pretty, that is for a later post which will cover beautifying matplotlib somewhat. I am chaining methods here which if you are not used to pandas may be slightly confusing. The explanation is that</p>
+
+<p>``` python</p>
+
+<h1>Helper functions to reduce line length</h1>
+
+<p>per10 = lambda x: np.percentile(x, q=10)
+rel_per10 = lambda x: x &ndash; per10(x)</p>
+
+<h1>Create our subplots, share the y axis to make comparison more intuitive</h1>
+
+<p>fig, axes = plt.subplot(1, 3, figsize=(16,9), sharey=True)</p>
+
+<h1>Plot from 2012 only to avoid too much visual clutter.</h1>
+
+<h1>Raw Data</h1>
+
+<p>daily_level.ix[&ldquo;2012&rdquo;:].plot(ax=axes[0])</p>
+
+<h1>Transformation to be applied</h1>
+
+<p>daily_level.groupby(doy).transform(per10).ix[&ldquo;2012&rdquo;:].plot(ax=axes[1])</p>
+
+<h1>Final Result</h1>
+
+<p>daily_level.groupby(doy).transform(rel_per10).ix[&ldquo;2012&rdquo;:].plot(ax=axes[2])</p>
+
+<h1>Labels</h1>
+
+<p>titles = [&ldquo;Raw hydrology data&rdquo;, &ldquo;Bottom Decile&rdquo;, &ldquo;Transformed Data&rdquo;]
+for ax, title in zip(axes, titles):</p>
+
+<pre><code>ax.set_title(title)
+</code></pre>
+
+<p>axes[0].set_ylabel(&ldquo;Quantity of Hydro Storage [GWh]&rdquo;)</p>
+
+<p>fig.savefig(&ldquo;hydro_data_over_time.png&rdquo;, dpi=150)
+```</p>
+
+<p><img src="/images/may2013/hydro_data_over_time.png"></p>
+
+<p>Right, an explanation. What we have done is create three plots which gives the reader a fairly decent overview as to the hydrology situation from 2012 onwards. From this figure we get an appreciation of the raw situation as seen on a daily basis. In the second plot we can then visually compare this to the bottom decile of what has occurred for the past 80 years. Finally, in the final plot we compare the two sets of data which highlights the low hydro storage experienced during the Autumn and Winter of 2012. It also adequately shows the large series of inflows which occurred over the 2012-2013 new year periods. Finally, the tail end of the figure shows that hydrology levels have again deteriorated from the large burst of inflows.</p>
+
+<p>Not too bad for a few simple lines of code. In total, to produce the image required 14 individual lines excluding the module import.</p>
+
+<p>Hopefully this post has given you a bit more of a detailed explanation as to using the groupby functionality, especially with time series. I&rsquo;ll attempt to extend upon this in the coming days as time and motivation permits.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Tutorial Series: Selecting Data with Pandas]]></title>
     <link href="http://NigelCleland.github.io/blog/2013/05/12/selecting-data-with-pandas/"/>
     <updated>2013-05-12T13:12:00+12:00</updated>
     <id>http://NigelCleland.github.io/blog/2013/05/12/selecting-data-with-pandas</id>
     <content type="html"><![CDATA[<p>As part of my job I need to do a large amount of sample analysis, and visualisation of small subsets of data. This requires a large quantity of iteration, trial and error and repetitive coding. Something we all wish we could avoid, yet sometimes can&rsquo;t. To give a practical example, I often need to work with half hourly data, for a wide range of individual metrics which may have similarities. What I need to do, is isolate this data in various ways.</p>
+
+<p>EDIT: The original post used a library called masks. I&rsquo;ve decided to merge this into a larger directory to be called <a href="http://github.com/NigelCleland/pdtools">pdtools</a>. This directory will contain more helper functions and methods, not just masks.</p>
 
 <!-- more -->
 

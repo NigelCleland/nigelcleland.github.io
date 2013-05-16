@@ -9,7 +9,7 @@
   <meta name="author" content="Nigel Cleland">
 
   
-  <meta name="description" content="As part of my job I need to do a large amount of sample analysis, and visualisation of small subsets of data. This requires a large quantity of &hellip;">
+  <meta name="description" content="This is the second instalment in a brief series on using the pandas library for data analysis. The general aim of this series to to highlight some of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,7 +71,50 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/05/12/selecting-data-with-pandas/">Selecting Data With Pandas</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/05/16/tutorial-series-using-pandas-groupby-to-simplify-your-life/">Tutorial Series: Using Pandas Groupby to Simplify Your Life</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-16T10:40:00+12:00" pubdate data-updated="true">May 16<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is the second instalment in a brief series on using the pandas library for data analysis. The general aim of this series to to highlight some of the cool functionality which is in pandas. None of this is revolutionary, however Wes McKinney and the other contributors have made exceptional contributions to the speed and ease of which it is completed.</p>
+
+<p>In this post I&rsquo;m going to over the groupby function. Highlight a couple of the interesting things which you can do with it and generally show how much simpler pandas makes it to accomplish data analysis. I&rsquo;m going to be using a real data set, hydrology data from the last 80 odd years for the New Zealand electricity grid, this dataset has approximately 30,000 data points (1 per day) and is therefore a good size for this work. This post will cover a brief example of using groupby for time series and won&rsquo;t go through any of the more complex functionality and usage which can be developed when working with full DataFrames.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/05/16/tutorial-series-using-pandas-groupby-to-simplify-your-life/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/12/selecting-data-with-pandas/">Tutorial Series: Selecting Data With Pandas</a></h1>
     
     
       <p class="meta">
@@ -95,6 +138,8 @@
 
 
   <div class="entry-content"><p>As part of my job I need to do a large amount of sample analysis, and visualisation of small subsets of data. This requires a large quantity of iteration, trial and error and repetitive coding. Something we all wish we could avoid, yet sometimes can&rsquo;t. To give a practical example, I often need to work with half hourly data, for a wide range of individual metrics which may have similarities. What I need to do, is isolate this data in various ways.</p>
+
+<p>EDIT: The original post used a library called masks. I&rsquo;ve decided to merge this into a larger directory to be called <a href="http://github.com/NigelCleland/pdtools">pdtools</a>. This directory will contain more helper functions and methods, not just masks.</p>
 
 </div>
   
@@ -208,7 +253,11 @@ I used rbenv for my installation and a couple issues arose which were a bit of a
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/05/12/selecting-data-with-pandas/">Selecting Data with Pandas</a>
+        <a href="/blog/2013/05/16/tutorial-series-using-pandas-groupby-to-simplify-your-life/">Tutorial Series: Using pandas groupby to simplify your life</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/12/selecting-data-with-pandas/">Tutorial Series: Selecting Data with Pandas</a>
       </li>
     
       <li class="post">

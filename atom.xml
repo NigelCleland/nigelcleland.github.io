@@ -4,7 +4,7 @@
   <title><![CDATA[Electric Python]]></title>
   <link href="http://NigelCleland.github.io/atom.xml" rel="self"/>
   <link href="http://NigelCleland.github.io/"/>
-  <updated>2013-05-12T13:54:58+12:00</updated>
+  <updated>2013-05-16T13:53:09+12:00</updated>
   <id>http://NigelCleland.github.io/</id>
   <author>
     <name><![CDATA[Nigel Cleland]]></name>
@@ -14,11 +14,166 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Selecting Data with Pandas]]></title>
+    <title type="html"><![CDATA[Tutorial Series: Using pandas groupby to simplify your life]]></title>
+    <link href="http://NigelCleland.github.io/blog/2013/05/16/tutorial-series-using-pandas-groupby-to-simplify-your-life/"/>
+    <updated>2013-05-16T10:40:00+12:00</updated>
+    <id>http://NigelCleland.github.io/blog/2013/05/16/tutorial-series-using-pandas-groupby-to-simplify-your-life</id>
+    <content type="html"><![CDATA[<p>This is the second instalment in a brief series on using the pandas library for data analysis. The general aim of this series to to highlight some of the cool functionality which is in pandas. None of this is revolutionary, however Wes McKinney and the other contributors have made exceptional contributions to the speed and ease of which it is completed.</p>
+
+<p>In this post I&rsquo;m going to over the groupby function. Highlight a couple of the interesting things which you can do with it and generally show how much simpler pandas makes it to accomplish data analysis. I&rsquo;m going to be using a real data set, hydrology data from the last 80 odd years for the New Zealand electricity grid, this dataset has approximately 30,000 data points (1 per day) and is therefore a good size for this work. This post will cover a brief example of using groupby for time series and won&rsquo;t go through any of the more complex functionality and usage which can be developed when working with full DataFrames.</p>
+
+<!-- more -->
+
+
+<p>Right to begin we need to load our data, I&rsquo;m going to use a custom module which makes this a bit easier called <a href="http://github.com/NigelCleland/nzem">nzem</a>. The nzem library is my own personal library which simplifies some of the initial data analysis I use most frequently. For example, the following will load hydrology data and automatically parse the relatively disgusting date format which the csv file has. Note, that the nzem module automatically loads and initlises the <a href="http://github.com/NigelCleland/masks">masks</a> library which I discussed in my last post.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># Load modules</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">nzem</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Load the data, niwa_date is a specific format not recognised by the dateutil.parser utility</span>
+</span><span class='line'><span class="n">hydro_data</span> <span class="o">=</span> <span class="n">nzem</span><span class="o">.</span><span class="n">load_csvfile</span><span class="p">(</span><span class="s">&#39;hydro_data/Hydro_Lake_Data.csv&#39;</span><span class="p">,</span> <span class="n">niwa_date</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Get a single column, daily_level will then be a series</span>
+</span><span class='line'><span class="n">daily_level</span> <span class="o">=</span> <span class="n">hydro_data</span><span class="p">[</span><span class="s">&quot;Daily Stored&quot;</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Confirmation that we are working with a time series</span>
+</span><span class='line'><span class="nb">type</span><span class="p">(</span><span class="n">daily_level</span><span class="p">)</span> <span class="c"># pandas.core.series.Series</span>
+</span><span class='line'><span class="nb">type</span><span class="p">(</span><span class="n">daily_level</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="c"># pandas.tseries.index.DatetimeIndex</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, we have a single series which contains the daily storage level of the entire countries hydro lakes (in GWh).</p>
+
+<p>Now, on to using the group by functionality. The pandas <a href="http://pandas.pydata.org/pandas-docs/stable/groupby.html">groupby</a> library has two primary uses. Aggregations and Transformations. An Aggregation will return a new series with indices set by the groupby keys.
+A Transformation will return the original series transformed according to the predefined function.</p>
+
+<p>This is best demonstrated by example</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># Aggregation</span>
+</span><span class='line'><span class="c"># Group by the day of year, take the mean of these points</span>
+</span><span class='line'><span class="n">doy</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dayofyear</span>
+</span><span class='line'><span class="n">doy_mean</span> <span class="o">=</span> <span class="n">daily_level</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">doy</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span> <span class="c"># Note you don&#39;t need to use the () at the end of np.mean.</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="n">doy_mean</span><span class="p">)</span> <span class="c"># 366, one for each day</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Transformation</span>
+</span><span class='line'><span class="c"># Group by the day of year, but subtract the mean from each point</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">relative_mean</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span class='line'><span class="n">doy_rel_mean</span> <span class="o">=</span> <span class="n">daily_level</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">doy</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">relative_mean</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="n">doy_rel_mean</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">daily_level</span><span class="p">)</span> <span class="c"># returns True</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, we need to cover where we use each one. The aggregations are useful when what we are interested in is the summary statistic, and we do not intend to remerge it with our dataframe. For example, if we wanted to remerge it we would have to go through a bunch of steps which would be quite painful. The transform function on the other hand should be used when you want a data point equivalent to each of the original series/dataframe.</p>
+
+<p>For example, in the above example the transform example can be used to create a repeating series which we then apply against our raw data. A visual explanation as to why this is beneficial may be most appropriate.
+I&rsquo;m not going to attempt to make this figure extremely pretty, that is for a later post which will cover beautifying matplotlib somewhat. I am chaining methods here which if you are not used to pandas may be slightly confusing. The explanation is that</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># Helper functions to reduce line length</span>
+</span><span class='line'><span class="n">per10</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span><span class='line'><span class="n">rel_per10</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">-</span> <span class="n">per10</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Create our subplots, share the y axis to make comparison more intuitive</span>
+</span><span class='line'><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Plot from 2012 only to avoid too much visual clutter.</span>
+</span><span class='line'><span class="c"># Raw Data</span>
+</span><span class='line'><span class="n">daily_level</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="s">&quot;2012&quot;</span><span class="p">:]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Transformation to be applied</span>
+</span><span class='line'><span class="n">daily_level</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">doy</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">per10</span><span class="p">)</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="s">&quot;2012&quot;</span><span class="p">:]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Final Result</span>
+</span><span class='line'><span class="n">daily_level</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">doy</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">rel_per10</span><span class="p">)</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="s">&quot;2012&quot;</span><span class="p">:]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Labels</span>
+</span><span class='line'><span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Raw hydrology data&quot;</span><span class="p">,</span> <span class="s">&quot;Bottom Decile&quot;</span><span class="p">,</span> <span class="s">&quot;Transformed Data&quot;</span><span class="p">]</span>
+</span><span class='line'><span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">title</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">titles</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&quot;Quantity of Hydro Storage [GWh]&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&quot;hydro_data_over_time.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://NigelCleland.github.io/images/may2013/hydro_data_over_time.png"></p>
+
+<p>Right, an explanation. What we have done is create three plots which gives the reader a fairly decent overview as to the hydrology situation from 2012 onwards. From this figure we get an appreciation of the raw situation as seen on a daily basis. In the second plot we can then visually compare this to the bottom decile of what has occurred for the past 80 years. Finally, in the final plot we compare the two sets of data which highlights the low hydro storage experienced during the Autumn and Winter of 2012. It also adequately shows the large series of inflows which occurred over the 2012-2013 new year periods. Finally, the tail end of the figure shows that hydrology levels have again deteriorated from the large burst of inflows.</p>
+
+<p>Not too bad for a few simple lines of code. In total, to produce the image required 14 individual lines excluding the module import.</p>
+
+<p>Hopefully this post has given you a bit more of a detailed explanation as to using the groupby functionality, especially with time series. I&rsquo;ll attempt to extend upon this in the coming days as time and motivation permits.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Tutorial Series: Selecting Data with Pandas]]></title>
     <link href="http://NigelCleland.github.io/blog/2013/05/12/selecting-data-with-pandas/"/>
     <updated>2013-05-12T13:12:00+12:00</updated>
     <id>http://NigelCleland.github.io/blog/2013/05/12/selecting-data-with-pandas</id>
     <content type="html"><![CDATA[<p>As part of my job I need to do a large amount of sample analysis, and visualisation of small subsets of data. This requires a large quantity of iteration, trial and error and repetitive coding. Something we all wish we could avoid, yet sometimes can&rsquo;t. To give a practical example, I often need to work with half hourly data, for a wide range of individual metrics which may have similarities. What I need to do, is isolate this data in various ways.</p>
+
+<p>EDIT: The original post used a library called masks. I&rsquo;ve decided to merge this into a larger directory to be called <a href="http://github.com/NigelCleland/pdtools">pdtools</a>. This directory will contain more helper functions and methods, not just masks.</p>
 
 <!-- more -->
 

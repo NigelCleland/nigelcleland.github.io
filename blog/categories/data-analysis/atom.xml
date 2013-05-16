@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Data Analysis | Electric Python]]></title>
+  <title><![CDATA[Category: data analysis | Electric Python]]></title>
   <link href="http://NigelCleland.github.io/blog/categories/data-analysis/atom.xml" rel="self"/>
   <link href="http://NigelCleland.github.io/"/>
-  <updated>2013-05-12T13:54:58+12:00</updated>
+  <updated>2013-05-16T13:53:09+12:00</updated>
   <id>http://NigelCleland.github.io/</id>
   <author>
     <name><![CDATA[Nigel Cleland]]></name>
@@ -14,108 +14,120 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Selecting Data with Pandas]]></title>
-    <link href="http://NigelCleland.github.io/blog/2013/05/12/selecting-data-with-pandas/"/>
-    <updated>2013-05-12T13:12:00+12:00</updated>
-    <id>http://NigelCleland.github.io/blog/2013/05/12/selecting-data-with-pandas</id>
-    <content type="html"><![CDATA[<p>As part of my job I need to do a large amount of sample analysis, and visualisation of small subsets of data. This requires a large quantity of iteration, trial and error and repetitive coding. Something we all wish we could avoid, yet sometimes can&rsquo;t. To give a practical example, I often need to work with half hourly data, for a wide range of individual metrics which may have similarities. What I need to do, is isolate this data in various ways.</p>
+    <title type="html"><![CDATA[Tutorial Series: Using pandas groupby to simplify your life]]></title>
+    <link href="http://NigelCleland.github.io/blog/2013/05/16/tutorial-series-using-pandas-groupby-to-simplify-your-life/"/>
+    <updated>2013-05-16T10:40:00+12:00</updated>
+    <id>http://NigelCleland.github.io/blog/2013/05/16/tutorial-series-using-pandas-groupby-to-simplify-your-life</id>
+    <content type="html"><![CDATA[<p>This is the second instalment in a brief series on using the pandas library for data analysis. The general aim of this series to to highlight some of the cool functionality which is in pandas. None of this is revolutionary, however Wes McKinney and the other contributors have made exceptional contributions to the speed and ease of which it is completed.</p>
+
+<p>In this post I&rsquo;m going to over the groupby function. Highlight a couple of the interesting things which you can do with it and generally show how much simpler pandas makes it to accomplish data analysis. I&rsquo;m going to be using a real data set, hydrology data from the last 80 odd years for the New Zealand electricity grid, this dataset has approximately 30,000 data points (1 per day) and is therefore a good size for this work. This post will cover a brief example of using groupby for time series and won&rsquo;t go through any of the more complex functionality and usage which can be developed when working with full DataFrames.</p>
 
 <!-- more -->
 
 
-<p>Now, here we introduce pandas. Pandas is an analysis library for Python built on top of numpy for fast merges, joins and analysis. It is an essential part of my day to day work and if you have to work with any decent amount of data I highly recommend using it. However, there is one slight issue I&rsquo;ve had with it. Selecting small subsets of data in a simple fashion. To give an example, in python, to iterate we can use:</p>
+<p>Right to begin we need to load our data, I&rsquo;m going to use a custom module which makes this a bit easier called <a href="http://github.com/NigelCleland/nzem">nzem</a>. The nzem library is my own personal library which simplifies some of the initial data analysis I use most frequently. For example, the following will load hydrology data and automatically parse the relatively disgusting date format which the csv file has. Note, that the nzem module automatically loads and initlises the <a href="http://github.com/NigelCleland/masks">masks</a> library which I discussed in my last post.</p>
 
-<p>``` python
-for item in container:</p>
+<p>``` python</p>
 
-<pre><code>if item in subset:
-        print item
+<h1>Load modules</h1>
+
+<p>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import nzem</p>
+
+<h1>Load the data, niwa_date is a specific format not recognised by the dateutil.parser utility</h1>
+
+<p>hydro_data = nzem.load_csvfile(&lsquo;hydro_data/Hydro_Lake_Data.csv&rsquo;, niwa_date=True)</p>
+
+<h1>Get a single column, daily_level will then be a series</h1>
+
+<p>daily_level = hydro_data[&ldquo;Daily Stored&rdquo;]</p>
+
+<h1>Confirmation that we are working with a time series</h1>
+
+<p>type(daily_level) # pandas.core.series.Series
+type(daily_level.index) # pandas.tseries.index.DatetimeIndex
+```</p>
+
+<p>Now, we have a single series which contains the daily storage level of the entire countries hydro lakes (in GWh).</p>
+
+<p>Now, on to using the group by functionality. The pandas <a href="http://pandas.pydata.org/pandas-docs/stable/groupby.html">groupby</a> library has two primary uses. Aggregations and Transformations. An Aggregation will return a new series with indices set by the groupby keys.
+A Transformation will return the original series transformed according to the predefined function.</p>
+
+<p>This is best demonstrated by example</p>
+
+<p>``` python</p>
+
+<h1>Aggregation</h1>
+
+<h1>Group by the day of year, take the mean of these points</h1>
+
+<p>doy = lambda x: x.dayofyear
+doy_mean = daily_level.groupby(doy).aggregate(np.mean) # Note you don&rsquo;t need to use the () at the end of np.mean.</p>
+
+<p>len(doy_mean) # 366, one for each day</p>
+
+<h1>Transformation</h1>
+
+<h1>Group by the day of year, but subtract the mean from each point</h1>
+
+<p>relative_mean = lambda x: x &ndash; np.mean(x)
+doy_rel_mean = daily_level.groupby(doy).transform(relative_mean)</p>
+
+<p>len(doy_rel_mean) == len(daily_level) # returns True
+```</p>
+
+<p>Now, we need to cover where we use each one. The aggregations are useful when what we are interested in is the summary statistic, and we do not intend to remerge it with our dataframe. For example, if we wanted to remerge it we would have to go through a bunch of steps which would be quite painful. The transform function on the other hand should be used when you want a data point equivalent to each of the original series/dataframe.</p>
+
+<p>For example, in the above example the transform example can be used to create a repeating series which we then apply against our raw data. A visual explanation as to why this is beneficial may be most appropriate.
+I&rsquo;m not going to attempt to make this figure extremely pretty, that is for a later post which will cover beautifying matplotlib somewhat. I am chaining methods here which if you are not used to pandas may be slightly confusing. The explanation is that</p>
+
+<p>``` python</p>
+
+<h1>Helper functions to reduce line length</h1>
+
+<p>per10 = lambda x: np.percentile(x, q=10)
+rel_per10 = lambda x: x &ndash; per10(x)</p>
+
+<h1>Create our subplots, share the y axis to make comparison more intuitive</h1>
+
+<p>fig, axes = plt.subplot(1, 3, figsize=(16,9), sharey=True)</p>
+
+<h1>Plot from 2012 only to avoid too much visual clutter.</h1>
+
+<h1>Raw Data</h1>
+
+<p>daily_level.ix[&ldquo;2012&rdquo;:].plot(ax=axes[0])</p>
+
+<h1>Transformation to be applied</h1>
+
+<p>daily_level.groupby(doy).transform(per10).ix[&ldquo;2012&rdquo;:].plot(ax=axes[1])</p>
+
+<h1>Final Result</h1>
+
+<p>daily_level.groupby(doy).transform(rel_per10).ix[&ldquo;2012&rdquo;:].plot(ax=axes[2])</p>
+
+<h1>Labels</h1>
+
+<p>titles = [&ldquo;Raw hydrology data&rdquo;, &ldquo;Bottom Decile&rdquo;, &ldquo;Transformed Data&rdquo;]
+for ax, title in zip(axes, titles):</p>
+
+<pre><code>ax.set_title(title)
 </code></pre>
 
-<p>```</p>
+<p>axes[0].set_ylabel(&ldquo;Quantity of Hydro Storage [GWh]&rdquo;)</p>
 
-<p>Here the key is that we&rsquo;re looking at the entire container, and then assessing whether our item fits that subset. However, in pandas it isn&rsquo;t so easy.
-In Pandas, to select a subset of the data we create an array of booleans and then apply this to the dataframe as follows:</p>
-
-<p>``` python
-import pandas as pd
-import numpy as np</p>
-
-<p>df = pd.DataFrame(np.random.random(10, 4), columns=[&ldquo;A&rdquo;, &ldquo;B&rdquo;, &ldquo;C&rdquo;, &ldquo;D&rdquo;])</p>
-
-<p>subset = df[(df[&ldquo;A&rdquo;] &lt;= 0.5) &amp; (df[&ldquo;B&rdquo;] >= 0.2)]
-```
-In this example, we are selecting a subset of our data which satisfies the condition of column A being less than or equal to 0.5 and column B greater than or equal to 0.2. (Note, the brackets around each statement are required.</p>
-
-<p>However, this syntax, while clear for simple examples does start to break down at higher orders. For example, let&rsquo;s say we had qualitative values in our data frame and we want to select a small subset of them. We cannot use the in operator, or a multiple equal operator. Instead, we need to use the or operator.</p>
-
-<p>``` python</p>
-
-<h1>Note this won&rsquo;t work:</h1>
-
-<p>df[df[&ldquo;A&rdquo;] == (0.3, 0.2, 0.7)]</p>
-
-<h1>Require the following:</h1>
-
-<p>df[(df[&ldquo;A&rdquo;] == 0.3) | (df[&ldquo;A&rdquo;] == 0.2) | (df[&ldquo;A&rdquo;] == 0.7)]
+<p>fig.savefig(&ldquo;hydro_data_over_time.png&rdquo;, dpi=150)
 ```</p>
 
-<p>As you can see the amount of duplicate code requires continues to increase linearly with each additional item we wish to check. Is there a better way?
-Turns out, maybe.</p>
+<p><img src="/images/may2013/hydro_data_over_time.png"></p>
 
-<p>What I have done is develop a range of common masks and place them in a single <a href="https://github.com/NigelCleland/masks">repository</a> or it may be downloaded using pip</p>
+<p>Right, an explanation. What we have done is create three plots which gives the reader a fairly decent overview as to the hydrology situation from 2012 onwards. From this figure we get an appreciation of the raw situation as seen on a daily basis. In the second plot we can then visually compare this to the bottom decile of what has occurred for the past 80 years. Finally, in the final plot we compare the two sets of data which highlights the low hydro storage experienced during the Autumn and Winter of 2012. It also adequately shows the large series of inflows which occurred over the 2012-2013 new year periods. Finally, the tail end of the figure shows that hydrology levels have again deteriorated from the large burst of inflows.</p>
 
-<p><code>
-pip install masks
-</code></p>
+<p>Not too bad for a few simple lines of code. In total, to produce the image required 14 individual lines excluding the module import.</p>
 
-<p>To use it, you simply import the masks module after importing pandas and it will apply a number of additional methods to the Series and DataFrame classes in the pandas module. I&rsquo;ve attempted to avoid all known api clashes through the addition of _masks at the end of each function, which should also make the meaning clearer. Using this module our multiple selection example becomes much simpler</p>
-
-<p>``` python
-import pandas as pd
-import masks
-import numpy as np</p>
-
-<p>df = pd.DataFrame(np.arange(30).reshape(10, 3), columns=[&ldquo;A&rdquo;, &ldquo;B&rdquo;, &ldquo;C&rdquo;])</p>
-
-<h1>Use the in_eqmask this mask will return all values which meet the conditions</h1>
-
-<h1>the eqmask instead of just mask is to specify that equality conditions are</h1>
-
-<h1>being introduced</h1>
-
-<p>df.in_eqmask(&ldquo;A&rdquo;, (6, 12, 24))</p>
-
-<h1>Or another simple use case which has frustrated me endlessly in pandas is</h1>
-
-<h1>returning all rows which satisfy a between type condition.</h1>
-
-<p>df[(df[&ldquo;A&rdquo;] >= 0.5) &amp; (df[&ldquo;A&rdquo;] &lt;= 0.7)]
-df.bet_mask(&ldquo;A&rdquo;, (0.5, 0.7))
-```</p>
-
-<p>Which is much much simpler no?</p>
-
-<p>An additional benefit of this is that we are able to chain methods together in order to create the desired subsets. For example.</p>
-
-<p><code>python
-df.ge_mask("A", 5).le_mask("C", 15).ne_mask("B", 10)
-</code></p>
-
-<p>We just applied three different refinements to get all rows of the dataframe where A is greater than 5, C less than 15 and B not equal to 10.</p>
-
-<p>There are a few more complex functions in the module, such as selecting the top, bottom or middle x% of a particular column or columns e.g.</p>
-
-<p>``` python</p>
-
-<h1>Take the rows which satisfy the top 25% of column A, then take the bottom 10% of column B</h1>
-
-<h1>from this subset.</h1>
-
-<p>df.top_mask(&ldquo;A&rdquo;, 25).bot_mask(&ldquo;B&rdquo;, 10)
-```</p>
-
-<p>masks is still a work in progress, however it is usable as is for prototyping and data exploration. There are a number of additional features which are still needed at this stage. There repo is <a href="https://github.com/NigelCleland/masks">here</a> and all contributions/comments are welcome. I&rsquo;m not sure this is the best way to add this functionality, however it has been useful for me in the past and thus I&rsquo;m putting it out there incase anyone else finds it useful.</p>
+<p>Hopefully this post has given you a bit more of a detailed explanation as to using the groupby functionality, especially with time series. I&rsquo;ll attempt to extend upon this in the coming days as time and motivation permits.</p>
 ]]></content>
   </entry>
   
