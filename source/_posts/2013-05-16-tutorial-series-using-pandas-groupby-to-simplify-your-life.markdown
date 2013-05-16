@@ -89,7 +89,7 @@ axes[0].set_ylabel("Quantity of Hydro Storage [GWh]")
 fig.savefig("hydro_data_over_time.png", dpi=150)
 ```
 
-{% img /images/hydro_data_over_time.png %}
+{% img /images/may2013/hydro_data_over_time.png %}
 
 Right, an explanation. What we have done is create three plots which gives the reader a fairly decent overview as to the hydrology situation from 2012 onwards. From this figure we get an appreciation of the raw situation as seen on a daily basis. In the second plot we can then visually compare this to the bottom decile of what has occurred for the past 80 years. Finally, in the final plot we compare the two sets of data which highlights the low hydro storage experienced during the Autumn and Winter of 2012. It also adequately shows the large series of inflows which occurred over the 2012-2013 new year periods. Finally, the tail end of the figure shows that hydrology levels have again deteriorated from the large burst of inflows.
 

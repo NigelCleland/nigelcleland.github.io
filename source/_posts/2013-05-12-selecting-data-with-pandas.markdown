@@ -8,6 +8,8 @@ categories: [python, pandas, Data Analysis]
 
 As part of my job I need to do a large amount of sample analysis, and visualisation of small subsets of data. This requires a large quantity of iteration, trial and error and repetitive coding. Something we all wish we could avoid, yet sometimes can't. To give a practical example, I often need to work with half hourly data, for a wide range of individual metrics which may have similarities. What I need to do, is isolate this data in various ways.
 
+EDIT: The original post used a library called masks. I've decided to merge this into a larger directory to be called [pdtools](http://github.com/NigelCleland/pdtools). This directory will contain more helper functions and methods, not just masks.
+
 <!-- more -->
 
 Now, here we introduce pandas. Pandas is an analysis library for Python built on top of numpy for fast merges, joins and analysis. It is an essential part of my day to day work and if you have to work with any decent amount of data I highly recommend using it. However, there is one slight issue I've had with it. Selecting small subsets of data in a simple fashion. To give an example, in python, to iterate we can use:
