@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: merging | Electric Python]]></title>
+  <link href="http://NigelCleland.github.io/blog/categories/merging/atom.xml" rel="self"/>
+  <link href="http://NigelCleland.github.io/"/>
+  <updated>2013-05-18T19:34:29+12:00</updated>
+  <id>http://NigelCleland.github.io/</id>
+  <author>
+    <name><![CDATA[Nigel Cleland]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Tutorial Series: Merging Series with Pandas]]></title>
+    <link href="http://NigelCleland.github.io/blog/2013/05/18/tutorial-series-merging-series-with-pandas/"/>
+    <updated>2013-05-18T19:03:00+12:00</updated>
+    <id>http://NigelCleland.github.io/blog/2013/05/18/tutorial-series-merging-series-with-pandas</id>
+    <content type="html"><![CDATA[<p>This post will cover some quick usage surrounding merging a Series and a DataFrame or merging two Series together. This is functionality which I&rsquo;ve often felt is lacking and is boiler plate I&rsquo;ve had to write a number of times. I&rsquo;ve added the functionality to my new repo <a href="github.com/NigelCleland/pdtools">pdtools</a> and should hopefully simplify life for other people.</p>
+
+<p>This post will be a simple explanation as to how it works as well as a brief explanation. Broadly, as some of my work I had to work with extremely large datasets, tens of millions of rows, dozens of columns the full works. I had to merge aspects of these datasets together, often from disparate data sources. one element which was particularly frustrating for me was having large numbers of duplicate columns, and irrelevant information when all I wanted was a single series.</p>
+
+<!-- more -->
+
+
+<p>So, how do we get around this issue. First a brief overview of merging DataFrames together with Pandas. Of course the pandas documentation covers this in far more depth but in general the code we are interested in is as follows (for index merging)</p>
+
+<p>``` python
+import pandas as pd
+import numpy as np</p>
+
+<h1>Create DataFrames</h1>
+
+<p>df = pd.DataFrame(np.random.randn((10,4)), columns=[&ldquo;A&rdquo;,&ldquo;B&rdquo;,&ldquo;C&rdquo;,&ldquo;D&rdquo;])
+df1 = df[[&ldquo;A&rdquo;, &ldquo;B&rdquo;]]
+df2 = df[[&ldquo;C&rdquo;, &ldquo;D&rdquo;]]</p>
+
+<h1>Merging Method One</h1>
+
+<p>df3 = pd.merge(df1, df2, how=&lsquo;inner&rsquo;, left_index=True, right_index=True)
+df3 == df # Should return True</p>
+
+<h1>Method Two</h1>
+
+<p>df4 = df1.merge(df2, left_index=True, right_index=True)
+df4 == df # Should return True</p>
+
+<h1>Method Three</h1>
+
+<p>df5 = df2.merge(df1, left_index=True, right_index=True)
+df5 == df # Will return False as columns are different
+df5 = df5[[&ldquo;A&rdquo;, &ldquo;B&rdquo;, &ldquo;C&rdquo;, &ldquo;D&rdquo;]] # Reorder the columns
+df5 == df # Should return True
+```</p>
+
+<p>Broadly, we can either merge two DataFrames using the general pandas merge method, or the specific DataFrame method. Now what if we want to merge a series into a DataFrame, for ecxample.</p>
+
+<p>``` python
+s1 = df[&ldquo;C&rdquo;]
+s2 = df[&ldquo;D&rdquo;]</p>
+
+<h1>Pseudo code</h1>
+
+<p>df6 = df1.merge(s1).merge(s2) # Fails miserably
+```</p>
+
+<p>Broadly, pandas just does not like doing this. However, we can get around this by creating a single column DataFrame from the Series and merging that as follows.</p>
+
+<p>``` python</p>
+
+<h1>As a single statement, note this is not the best way to do this.</h1>
+
+<h1>I&rsquo;m also taking advantage of the fact that the series has a name which</h1>
+
+<h1>Will be passed as the new column name.</h1>
+
+<p>df6 = df1.merge(pd.DataFrame({s1.name : s1}), left_index=True, right_index=True).merge(pd.DataFrame({s2.name : s2}), left_index=True, right_index=True)
+```</p>
+
+<p>Wow, that is ugly. Wouldn&rsquo;t it be simpler if we could just merge the two together. Now, what we can do is create a bit of a wrapper and syntactic sugar around our ugly code above. Let&rsquo;s wrap it in a function to begin with.</p>
+
+<p>``` python
+def merge_dataframe_series(df, s, **kwds):</p>
+
+<pre><code>return df.merge(pd.DataFrame({s.name: s}), **kwds)
+</code></pre>
+
+<p>df7a = merge_dataframe_series(df1, s1, left_index=True, right_index=True)
+df7 = merge_dataframe_series(df7a, s2, left_index=True, right_index=True)</p>
+
+<p>df7 == df # Returns True
+```</p>
+
+<p>Hmmm, slightly, better but still pretty sub par over all. Lets cover the things which are wrong with the first attempt.</p>
+
+<ol>
+<li>Pretty unwieldy syntax, have to call it with a DataFrame and Series.</li>
+<li>Still need a lot of key word arguments to specify how the merge will occur.</li>
+<li>The name is very long, want it much shorter and sweeter.</li>
+<li>Ideally we want to be able to call this directly from a DataFrame.</li>
+</ol>
+
+
+<p>So, let&rsquo;s try again.</p>
+
+<p>``` python
+def merge_series(self, series, **kwds):</p>
+
+<pre><code>return self.merge(pd.DataFrame({series.name: series}), right_index=True, **kwds)
+</code></pre>
+
+<p>pd.DataFrame.merge_series = merge_series</p>
+
+<p>df8 = df1.merge_series(s1, left_index=True).merge_series(s2, left_index=True)</p>
+
+<p>df8 == df # Should be True
+```</p>
+
+<p>Now that is much better. The usage is much simpler, we don&rsquo;t need to specify what DataFrame since it is now a method of the DataFrame class. Since we&rsquo;re always going to be using the index of the Series we can automatically incorporate the <code>right_index=True</code> directly into the function. We&rsquo;re still using the **kwds to pass what argument we want for the merge function. Thus we don&rsquo;t need to use the index on the DataFrame, we could use a column using <code>left_on="column"</code> as well.</p>
+
+<p>Let&rsquo;s also do the same for a series</p>
+
+<p>``` python</p>
+
+<h1>Use series_merge instead of merge_series to avoid name space error.</h1>
+
+<h1>We&rsquo;ll map it to merge_series to maintain the consistent api usage though.</h1>
+
+<p>def series_merge(self, other, **kwds):</p>
+
+<pre><code>return pd.DataFrame({self.name: self}).merge(pd.DataFrame({other.name : other}), left_index=True, right_index=True)
+</code></pre>
+
+<p>pd.Series.merge_series = series_merge</p>
+
+<p>df9 = s1.merge_series(s2)
+df10 = df1.merge(df9, left_index=True, right_index=True)
+df10 == df # Should be True
+```</p>
+
+<p>Now, since we can only merge series based upon their indices. I&rsquo;m happy to be corrected on this but it is difficult to think of a different use case we can automatically assign the <code>left_index=True</code> and <code>right_index=True</code> key word arguments to simplify it.</p>
+
+<p>Now, what we&rsquo;ve accomplished in this blog post is a couple quick helper functions to make merging Series together, and into DataFrames much much simpler. These are automatically incorporated into the pdtools package. To apply this functionality you can download the package and incorporate it.</p>
+
+<p>``` python
+import pandas as pd
+import pdtools.merging # Just import the two merge functions</p>
+
+<h1>Or</h1>
+
+<p>import pdtools # Will import masks as well.
+```</p>
+
+<p>If using the general purpose pdtools import the masks functionality will also be added to the pandas classes. A brief overview of this functionality can be found <a href="http://nigelcleland.github.io/blog/2013/05/12/selecting-data-with-pandas/">here</a>.</p>
+
+<p>Thoughts/Questions/etc, open an issue on <a href="https://github.com/nigelcleland/pdtools/issues">github</a></p>
+]]></content>
+  </entry>
+  
+</feed>

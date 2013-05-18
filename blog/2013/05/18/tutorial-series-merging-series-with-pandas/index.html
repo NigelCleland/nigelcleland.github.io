@@ -1,0 +1,401 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Tutorial Series: Merging Series with Pandas - Electric Python</title>
+  <meta name="author" content="Nigel Cleland">
+
+  
+  <meta name="description" content="This post will cover some quick usage surrounding merging a Series and a DataFrame or merging two Series together. This is functionality which I& &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://NigelCleland.github.io/blog/2013/05/18/tutorial-series-merging-series-with-pandas">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Electric Python" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Electric Python</a></h1>
+  
+    <h2>Thoughts on Open Source, Electricity Markets and History</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:NigelCleland.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Tutorial Series: Merging Series With Pandas</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-18T19:03:00+12:00" pubdate data-updated="true">May 18<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This post will cover some quick usage surrounding merging a Series and a DataFrame or merging two Series together. This is functionality which I&rsquo;ve often felt is lacking and is boiler plate I&rsquo;ve had to write a number of times. I&rsquo;ve added the functionality to my new repo <a href="github.com/NigelCleland/pdtools">pdtools</a> and should hopefully simplify life for other people.</p>
+
+<p>This post will be a simple explanation as to how it works as well as a brief explanation. Broadly, as some of my work I had to work with extremely large datasets, tens of millions of rows, dozens of columns the full works. I had to merge aspects of these datasets together, often from disparate data sources. one element which was particularly frustrating for me was having large numbers of duplicate columns, and irrelevant information when all I wanted was a single series.</p>
+
+<!-- more -->
+
+
+<p>So, how do we get around this issue. First a brief overview of merging DataFrames together with Pandas. Of course the pandas documentation covers this in far more depth but in general the code we are interested in is as follows (for index merging)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Create DataFrames</span>
+</span><span class='line'><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="s">&quot;D&quot;</span><span class="p">])</span>
+</span><span class='line'><span class="n">df1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">]]</span>
+</span><span class='line'><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span><span class="p">]]</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Merging Method One</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s">&#39;inner&#39;</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span><span class='line'><span class="n">df3</span> <span class="o">==</span> <span class="n">df</span> <span class="c"># Should return True</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Method Two</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">df4</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span><span class='line'><span class="n">df4</span> <span class="o">==</span> <span class="n">df</span> <span class="c"># Should return True</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Method Three</span>
+</span><span class='line'><span class="n">df5</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span><span class='line'><span class="n">df5</span> <span class="o">==</span> <span class="n">df</span> <span class="c"># Will return False as columns are different</span>
+</span><span class='line'><span class="n">df5</span> <span class="o">=</span> <span class="n">df5</span><span class="p">[[</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span><span class="p">]]</span> <span class="c"># Reorder the columns</span>
+</span><span class='line'><span class="n">df5</span> <span class="o">==</span> <span class="n">df</span> <span class="c"># Should return True</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Broadly, we can either merge two DataFrames using the general pandas merge method, or the specific DataFrame method. Now what if we want to merge a series into a DataFrame, for ecxample.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">s1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">&quot;C&quot;</span><span class="p">]</span>
+</span><span class='line'><span class="n">s2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">&quot;D&quot;</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Pseudo code</span>
+</span><span class='line'><span class="n">df6</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span> <span class="c"># Fails miserably</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Broadly, pandas just does not like doing this. However, we can get around this by creating a single column DataFrame from the Series and merging that as follows.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># As a single statement, note this is not the best way to do this.</span>
+</span><span class='line'><span class="c"># I&#39;m also taking advantage of the fact that the series has a name which</span>
+</span><span class='line'><span class="c"># Will be passed as the new column name.</span>
+</span><span class='line'><span class="n">df6</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">s1</span><span class="o">.</span><span class="n">name</span> <span class="p">:</span> <span class="n">s1</span><span class="p">}),</span> <span class="n">left_index</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">s2</span><span class="o">.</span><span class="n">name</span> <span class="p">:</span> <span class="n">s2</span><span class="p">}),</span> <span class="n">left_index</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Wow, that is ugly. Wouldn&rsquo;t it be simpler if we could just merge the two together. Now, what we can do is create a bit of a wrapper and syntactic sugar around our ugly code above. Let&rsquo;s wrap it in a function to begin with.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">merge_dataframe_series</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">s</span><span class="p">}),</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">df7a</span> <span class="o">=</span> <span class="n">merge_dataframe_series</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span><span class='line'><span class="n">df7</span> <span class="o">=</span> <span class="n">merge_dataframe_series</span><span class="p">(</span><span class="n">df7a</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">df7</span> <span class="o">==</span> <span class="n">df</span> <span class="c"># Returns True</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Hmmm, slightly, better but still pretty sub par over all. Lets cover the things which are wrong with the first attempt.</p>
+
+<ol>
+<li>Pretty unwieldy syntax, have to call it with a DataFrame and Series.</li>
+<li>Still need a lot of key word arguments to specify how the merge will occur.</li>
+<li>The name is very long, want it much shorter and sweeter.</li>
+<li>Ideally we want to be able to call this directly from a DataFrame.</li>
+</ol>
+
+
+<p>So, let&rsquo;s try again.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">merge_series</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">series</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">series</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">series</span><span class="p">}),</span> <span class="n">right_index</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">merge_series</span> <span class="o">=</span> <span class="n">merge_series</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">df8</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge_series</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">merge_series</span><span class="p">(</span><span class="n">s2</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">df8</span> <span class="o">==</span> <span class="n">df</span> <span class="c"># Should be True</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now that is much better. The usage is much simpler, we don&rsquo;t need to specify what DataFrame since it is now a method of the DataFrame class. Since we&rsquo;re always going to be using the index of the Series we can automatically incorporate the <code>right_index=True</code> directly into the function. We&rsquo;re still using the **kwds to pass what argument we want for the merge function. Thus we don&rsquo;t need to use the index on the DataFrame, we could use a column using <code>left_on="column"</code> as well.</p>
+
+<p>Let&rsquo;s also do the same for a series</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># Use series_merge instead of merge_series to avoid name space error.</span>
+</span><span class='line'><span class="c"># We&#39;ll map it to merge_series to maintain the consistent api usage though.</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">series_merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="bp">self</span><span class="p">})</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">other</span><span class="o">.</span><span class="n">name</span> <span class="p">:</span> <span class="n">other</span><span class="p">}),</span> <span class="n">left_index</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="o">.</span><span class="n">merge_series</span> <span class="o">=</span> <span class="n">series_merge</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">df9</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="n">merge_series</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+</span><span class='line'><span class="n">df10</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df9</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span><span class='line'><span class="n">df10</span> <span class="o">==</span> <span class="n">df</span> <span class="c"># Should be True</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, since we can only merge series based upon their indices. I&rsquo;m happy to be corrected on this but it is difficult to think of a different use case we can automatically assign the <code>left_index=True</code> and <code>right_index=True</code> key word arguments to simplify it.</p>
+
+<p>Now, what we&rsquo;ve accomplished in this blog post is a couple quick helper functions to make merging Series together, and into DataFrames much much simpler. These are automatically incorporated into the pdtools package. To apply this functionality you can download the package and incorporate it.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">pdtools.merging</span> <span class="c"># Just import the two merge functions</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Or</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">pdtools</span> <span class="c"># Will import masks as well.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If using the general purpose pdtools import the masks functionality will also be added to the pandas classes. A brief overview of this functionality can be found <a href="http://nigelcleland.github.io/blog/2013/05/12/selecting-data-with-pandas/">here</a>.</p>
+
+<p>Thoughts/Questions/etc, open an issue on <a href="https://github.com/nigelcleland/pdtools/issues">github</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Nigel Cleland</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-18T19:03:00+12:00" pubdate data-updated="true">May 18<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/merging/'>merging</a>, <a class='category' href='/blog/categories/pandas/'>pandas</a>, <a class='category' href='/blog/categories/python/'>python</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://NigelCleland.github.io/blog/2013/05/18/tutorial-series-merging-series-with-pandas/" data-via="" data-counturl="http://NigelCleland.github.io/blog/2013/05/18/tutorial-series-merging-series-with-pandas/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/05/16/tutorial-series-using-pandas-groupby-to-simplify-your-life/" title="Previous Post: Tutorial Series: Using pandas groupby to simplify your life">&laquo; Tutorial Series: Using pandas groupby to simplify your life</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/05/18/tutorial-series-merging-series-with-pandas/">Tutorial Series: Merging Series with Pandas</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/16/tutorial-series-using-pandas-groupby-to-simplify-your-life/">Tutorial Series: Using pandas groupby to simplify your life</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/12/selecting-data-with-pandas/">Tutorial Series: Selecting Data with Pandas</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/09/introduction-and-blog-content/">Introduction and blog content</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/08/setting-up-octopress/">Setting up Octopress with Ubuntu</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Nigel Cleland -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
