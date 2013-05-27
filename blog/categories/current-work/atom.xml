@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: research | Electric Python]]></title>
-  <link href="http://NigelCleland.github.io/blog/categories/research/atom.xml" rel="self"/>
+  <title><![CDATA[Category: current work | Electric Python]]></title>
+  <link href="http://NigelCleland.github.io/blog/categories/current-work/atom.xml" rel="self"/>
   <link href="http://NigelCleland.github.io/"/>
   <updated>2013-05-27T21:11:56+12:00</updated>
   <id>http://NigelCleland.github.io/</id>
@@ -99,105 +99,6 @@ These filters are extremely effective (although transmission losses are an issue
 <h2>Conclusion</h2>
 
 <p>Well, this broadly covers everything I&rsquo;m working on professionally at the moment. There are a number of things which require my attention and it can be difficult juggling the time appropriately between them. In particular, I find when I get in a state of flow that I can crank out a large volume of highly productive and high quality work in a few hours. However, if I can&rsquo;t reach this state then it is difficult to be productive. One thing I&rsquo;m working on is trying to queue up work which can be done in less productive states (i.e. requiring little creativity or insight) so that I can still get things done. However, I appear to have had limited success at doing this so far.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Why Researchers should strive to develop repeatable code]]></title>
-    <link href="http://NigelCleland.github.io/blog/2013/05/20/why-researchers-should-strive-to-develop-repeatable-code/"/>
-    <updated>2013-05-20T11:06:00+12:00</updated>
-    <id>http://NigelCleland.github.io/blog/2013/05/20/why-researchers-should-strive-to-develop-repeatable-code</id>
-    <content type="html"><![CDATA[<p>As a researcher you&rsquo;ll often have to conduct a lot of smaller experiments, testing out a hypothesis here, running some data analysis there. Yet a lot of people I know, and I am personally guilty of this as well, do not make these scripts repeatable. Writing smart, testable, repeatable code takes longer and for many researchers who code out of necessity, not out of love it is not as intuitive. In many undergraduate degrees, particularly in engineering, the goal throughout the course of study is more to finish the assignment, pass the paper and repeatability be damned.</p>
-
-<p>However, this behaviour becomes counterproductive once you start researching. I cannot imagine the number of hours I have wasting having to repeat useless boiler plate, hard coded examples when some intelligent preparation work, although taking a bit longer initially would save me far more time in the long run.</p>
-
-<!-- more -->
-
-
-<p>The temptation is to justify taking the quick route through the rational realisation that a lot of the code you write will often be thrown away. Therefore, what is the point in making sure it is repeatable if we may throw out the hypothesis and start again anyway? Here, focus upon the methods you are applying, know that data you are applying it to and take a couple lessons from functional programming.</p>
-
-<p>For example, you may create a great hypothesis which works for your current set of data. However, you&rsquo;ve screwed up and hard coded a bunch of exceptions, magic numbers and other such parameters into the code. Elements you didn&rsquo;t need to. Wouldn&rsquo;t it be great if you could simply point your magical, world breaking, code at a new source of data and let the computer sort it all out?</p>
-
-<p>In my opinion this is what researchers should be striving to do. To separate content and form so to speak from one another. If you are developing a model, generalise the parts of it and then set it up so they are easy to connect. The model itself should update itself depending upon what data you feed it and shouldn&rsquo;t be limited as such. By arbitrarily limiting it you&rsquo;re really just kicking yourself later on down the road.</p>
-
-<p>So, how can we avoid screwing up, and start developing elegant repeatable code? Let&rsquo;s go through a couple options.</p>
-
-<ul>
-<li>Folder structure and file naming</li>
-<li>Version Control</li>
-<li>Smarter development of objects and functions</li>
-<li>Modules and packages</li>
-<li>Tests</li>
-</ul>
-
-
-<h2>Folder Structure and File Naming</h2>
-
-<p>Folder structure, or directory layout, seems like a strange thing to be placing upon a list of developing elegant code. Same with file naming. So what does this have to do with research and developing code? Quite simply a lot. Let&rsquo;s talk about the initial folder layout I use a simple three tier approach as follows.</p>
-
-<p>Note, that here the data is for trivial examples. If you&rsquo;re using anything more complex then I highly recommend you start researching into Databases and whether your data is suitable for them. However, one caveat is that introducing a Database layer may add significant overhead and if you are unskilled this may be beyond you. Nonetheless, give it a try, see if you like it. As a general rule of thumb think about how much information you are needing to store. 10 MB, you may be okay with a file. 100 MB, pushing it, possibly okay if you&rsquo;re using a library like pandas and vectorised calculations. 1000 MB, Databases start becoming your friend very very quickly. Additionally, you should ask yourself whether other people will also need access to the data sources.</p>
-
-<p>```
-data</p>
-
-<pre><code>- set_one
-- set_two
-</code></pre>
-
-<p>scripts</p>
-
-<pre><code>- experiment_one
-- experiment_two
-</code></pre>
-
-<p>modules</p>
-
-<pre><code>- module_one
-- module_two
-</code></pre>
-
-<p>```</p>
-
-<p>Now, what I&rsquo;ve done is I&rsquo;ve completed separated the three key aspects of my work. All of my data is contained within its own folder. I don&rsquo;t touch it and I certainly don&rsquo;t change any of the files within once they&rsquo;ve been modified. What this ensures is that if I chose to repeat something I can be sure that my dataset hasn&rsquo;t changed, and that assuming that the code has changed my program and code should just <em>work</em>.</p>
-
-<p>Secondly, I&rsquo;ve separated out my scripts and modules. Here we should define what each is. A module is something you&rsquo;ve developed which is testable and method independent. It may be a package you&rsquo;ve got off <a href="github.com">github</a> or something you&rsquo;ve developed yourself, such as a useful package of <a href="github.com/NigelCleland/pdtools">tools</a>. Now, your scripts on the other hand are the nitty gritty of what you do. You can still write these in a terrible fashion however at least the tools you use, and the data you run it on should be easily separable.</p>
-
-<h2>Version Control</h2>
-
-<p>What is Version Control and why, as a researcher, do I care? Ever worked with other people and what ends up getting passed around is a ton of files with names such as <code>file_name_person_number_44_date_37_final_copy_3.ext</code>. If yes, and if this made you absolutely hate life and become seriously concerned about the future well being of the human race then version control is for you!
-Now, I recommend using what people are comfortable with, however if you&rsquo;re new to it then my recommendation is to pick up git.</p>
-
-<p>Git is a decentralised version control system which makes merging together branches etc easy. Don&rsquo;t know what any of that means? Then pick up a copy of the progit book from github and get reading. I&rsquo;m not going to go through all of the nitty gritty here, just to say that you should be using it and if you&rsquo;re not then file name hell may be for you! Importantly, version control lets you do as the name suggests and manage different versions of something in a sane easy to implement manner. What is great about it is if you use a plain text based document system, such as LaTeX then you can also manage your documents with it. This makes storing different versions simple (e.g. define a branch as 0.1.0) and you&rsquo;ll always be able to return to that branch for prior iterations.</p>
-
-<h2>Smarter development of objects and functions</h2>
-
-<p>Whenever you need to hard code something in to your scripts you should ask yourself. Do I really need to be doing this? Is there a better way? Can I write this in such a way that I will understand it a week from now, a month from now? Code should be written so that it is easy for you to understand, not the machine. If at a later point you need something to be faster then by all means start optimising things (e.g. move towards C). However, initially write it so that you can understand it. Only rewrite the truly performance critical parts.</p>
-
-<p>Here things which help include, keyword arguments instead of hard coded parameters. Comments, docstrings, shorter functions. Resist the urge to develop so called &ldquo;God&rdquo; functions or classes that do everything. Instead, separate these (where sensible) into smaller reusable functions or methods. Obviously this is context specific and I&rsquo;m not going to give too many specifics.</p>
-
-<p>Just imagine future you is standing behind you with a shotgun and will pull the trigger if he doesn&rsquo;t understand what, or why, you are doing something in particular which is undocumented. The other key element here is to avoid, where possible, scope creep.</p>
-
-<p>Don&rsquo;t just randomly and haphazardly add new methods, or functions to a script and make it do something completely unexpected because it was easier at the time. Separate out the components and then join them together in an intelligent fashion.</p>
-
-<h2>Modules and packages</h2>
-
-<p>Modules and packages are simply reusable code. They&rsquo;re broadly use case independent and are therefore fantastic for saving time. There are hundreds of packages out there which will simplify your life and make you more productive. My advice is to use them.</p>
-
-<p>My second piece of advice is to take those functions which you use again and again and create your own custom packages. You don&rsquo;t have to release this to the general public but a toolbox which makes your life far far easier is not something to be dismissed. The code you write which goes into your module should be the best code you&rsquo;ve written. You&rsquo;re going to be using it hundreds of times and you want to know exactly what it will do in all situations.</p>
-
-<h2>Tests</h2>
-
-<p>Finally we come to the worst aspect of coding from my personal point of view. I know some people love writing tests, and enjoy test driven methodology however I see a key difference here. A lot of the people who enjoy test driven coding are writing software. In research we&rsquo;re often developing a number of small scripts which we use to generate results. Quite simply we don&rsquo;t have the same sense of scale, or requirements, as other programmers.</p>
-
-<p>Therefore, where are tests useful? Tests are most useful in your modules and packages, and less useful in your custom scripts. My general rule of thumb is as follows, if I&rsquo;m going to use this in multiple places and multiple situations then I am going to want a test for each of those places and situations. If I don&rsquo;t do this then I may make a modification for one particular use case forgetting that you&rsquo;re depending upon the previous functionality for a separate usecase. A test, if implemented and properly, would catch this behaviour and you can hopefully develop smarter.</p>
-
-<p>However, the key element here is that you&rsquo;re reusing code. If you are using it once, in a very specific situation then the code itself almost becomes a test. If it works, then the function is correct. If it doesn&rsquo;t work, the function is wrong. As there is only one use case is there much value in developing a test which repeats our use case?</p>
-
-<h2>Conclusions</h2>
-
-<p>In this post I&rsquo;ve argued, and laid out a few examples, of why and how you should be writing more repeatable code as a researcher. The list is by no means complete and is still a work in progress. I am after all still learning how to write better code, something which will continue as long as I am writing code.</p>
-
-<p>Feel free to ask any questions in the comments.</p>
 ]]></content>
   </entry>
   
