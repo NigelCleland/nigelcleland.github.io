@@ -1,0 +1,85 @@
+---
+layout: post
+title: "What I'm currently working on"
+date: 2013-05-27 19:52
+comments: true
+categories: [research, current work]
+---
+
+Haven't been able to write as much as I would have liked to over the past week. Been a bit tied up with other things going on. Thus, I thought I'd take this opportunity to run through each of the various projects and research lines I'm going down at the moment. Hopefully this should be a bit of an overview as to what I actually do.
+
+Broadly I'll divide my projects into three categories, write up stage, in progress stage and backburner stage. A project in write up stage is currently undergoing final revisions before submission to journals/conferences etc. Ones in the in progress stage are what I'm currently actively developing. This includes a lot of experimentation and prototyping to help consolidate my thoughts. Finally, the ones on the backburner stage are those which I'm currently thinking about and will tackle when I get time.
+
+<!-- more -->
+
+## Write up Stage
+
+### Reserve Constraints in co-optimised energy and security markets
+
+My first major piece of work which started it all. In an energy and reserve co-optimised market the total least cost solution for energy and security are dispatched. However, this can result in some quite non-intuitive dispatches and final pricing which is difficult to understand.
+In particular, the merit order appears to be broken and final pricing can become disconnected from the energy offers.
+
+This body of work discusses the theoretical mechanism through which this occurs. These theoretical mechanisms can be developed in two separate ways. Using the associate dual program (to the primal dispatch problem) or by developing small models which have a small subset of the constraints applied. I prefer the second approach as it is quite intuitive when visualising the solution upon a small model as compared to the mathematical result which arises. These constraints can occur in a number of different ways, and corner point solutions are also possible.
+
+Finally, I apply the results to create a set of filters which can be applied to the New Zealand market to determine when constraints occur.
+These filters are extremely effective (although transmission losses are an issue) at identifying the vast majority of the constrained periods. These results are illustrated as well as some discussion regarding the effect upon average prices discussed. The broad results is that security co-optimisation does not lead to any noticeable (long term) effect on energy prices although seasonal effects are apparent. However, these constraints have a major effect upon the average reserve market price and their resolution may severely reduce such pricing.
+
+### Probabilistic models for assessing the frequency of reserve constrained events.
+
+This is a body of work which extends upon the reserve constraints I identified above. Broadly, it seeks to investigate the common causes and if possible develop a probabilistic approach to investigating when they might occur. Broadly, I assess the general factors which are related in Electricity markets, time of day, time of year, hydrology, demand, security availability and market risk. From these factors I choose a subset which I then develop into an extended model.
+
+The model used inverse weighting of two smaller, more generic predictions. The inverse weighting method is used due to a dichotomy in the number of periods which exist at different hydrology levels. Using discrete bin sizes would lead to large errors and horribly distort the model. However, it was non-intuitive as to the best method of rectifying this. I settled on the inverse weighting approach as it appeared simple and elegant and accurately addressed my major concern.
+
+The model develop shows great qualitative and adequate quantitative accuracy. These events in New Zealand are uncommon, happening between 2% and 10% of the total trading periods over the past five years (South Island market, North Island market respectively). Thus, any approach would provides an indication as to when they occur is very useful. Broadly, the model was able to predict when large numbers of constrained periods would occur, as well as when they would not. Such a result is a definitive increase compared to a simple naive average, furthermore it is an enhanced understanding over the raw (univariate) analysis initially conducted.
+
+### On the non-linearity of consequences, why low probability events matter in Electricity networks.
+
+This is a short extended abstract and presentation which I'm preparing for the U21 graduate conference in Dublin. The theme of the conference is Energy Policy and Systems. In this vein I've decided to not speak about security constrained events and to take a more philosophical approach. One line of thought which I find fascinating is that some events are so catastrophic, so disastrous that people would pay almost any price to avoid them.
+
+I extend this idea into the realm of Electricity markets and develop several case studies. These case studies explore the broad elements of non-linearity in bounded systems (e.g. how the system behaves as it approaches the bound, as well as the location of each bound) and discuss their importance. It is also extend to develop a non-linear tolerance between different participants in a system to highlight a dichotomy. The broad case studies discussed are:
+
+* Cascade failure in Electrical networks leading to black starts
+* Extreme price distributions, 53% of revenue in the NZ security (secondary) market is made in 1% of the trading periods
+* Response to the Christchurch Earthquake of 2011 which highlighted different participants tolerance to network disruption.
+
+## In Progress Stage
+
+### Hedging via Reserve Markets
+
+This is an idea which I'm currently developing regarding the effectiveness of partial hedging via the reserve markets. Broadly, such a measure is similar to a Financial Transmission Right (FTR). However, an FTR is far more comprehensive than the Reserve Hedge. The pertinent question to be answered would be the relative effectiveness of such a measure. This effectiveness will likely be measured by assessing the degree of cover afforded by such a hedge as well as the relative cost of such a measure.
+
+I may be able to incorporate my probabilistic work into this to extend it into a dynamic hedging strategy. This could be undertaken along both perfect (full information and ability to hedge) and imperfect (heavily constrained) viewpoints. Either way, it will be an interesting assessment of how reserve markets can be linked into the energy markets. One measure which is not covered is that reserve hedging could be accomplished either physically or financially. 
+
+## Backburner Stage
+
+### Offer Strategies for participants during reserve constrained events.
+
+This will be more of a theoretical evaluation as to how optimal offer strategies begin to change when Reserve constraints are present in a market. These constraints will be assessed from a number of view points, e.g. generator, generator with reserve, reserve provider etc as to determine what the effect is on the margin. As there exists a linkage between the energy and reserve market prices during these events. Thus, it may be possible to highlight when a participant may be able to exert market power in one market to induce a constraint resulting in increased profits.
+
+### Simulation study of the effect of reduced Transmission constraints upon Reserve and Enerfy pricing in New Zealand.
+
+My current body of work has shown that there exists a substantial relationship between the value of the security market and constraints. Broadly, the market is defined by extremely low median prices with very high priced tail events which occur extremely rarely. However, these events are linked to constraints which exist due to the configuration of the HVDC poles. With the commissioning of the new Pole it will be worthwhile to assess what effect this will have upon the marginal periods when electricity peakers and reserve providers expect to recover the majority of their costs.
+
+## Code Projects
+
+### nzem
+
+This is intended mainly as a personal repository, but I will attempt to make it usable for others, which should investigate the ease of investigating the NZ electricity market. It currently has some broad helper functions but is currently in a bit of a haphazard space and needs a full rework soon. I'll try and put together a longer post explaining where I'm intending to take this as well as highlighting what work needs to be done soon.
+
+I also want to extend this module to help assess the NZ electricity hedge market including a better method of handling the data import and output. I'll attempt to get this started as soon as possible.
+
+### pdtools
+
+pdtools is a repository which applies a few monkey patches to the Pandas DataFrame and Series objects. Currently it adds some useful (in my opinion) data selection functions to both DataFrames and Series as well as providing method to simplify merging series. This repository will contain the functions and shortcuts I find most useful when working with Pandas objects.
+
+One thing which I do want to extend with this library is making the plotting and data output slightly nicer for including in publications. I find the default matplotlib styles a little ho-hum so I'll try and build some improve functionality into the repository to make the plots prettier. One other aspect is that I prefer a particular LaTeX table style when I'm putting together tables so I'll include this as well.
+
+### pyspd
+
+pyspd is a small repository which is intended to create small linear programs with the full complement of security and risk constraints in the NZ market. Broadly, it provides wrappers for setting up Nodes and generation stations without needing to understand how the underlying mathematics work. To do this it builds upon the puLP repository and the relevant solvers will be needed.
+
+Currently this repository needs a lot of work to bring it up to scratch in the near future.
+
+## Conclusion
+
+Well, this broadly covers everything I'm working on professionally at the moment. There are a number of things which require my attention and it can be difficult juggling the time appropriately between them. In particular, I find when I get in a state of flow that I can crank out a large volume of highly productive and high quality work in a few hours. However, if I can't reach this state then it is difficult to be productive. One thing I'm working on is trying to queue up work which can be done in less productive states (i.e. requiring little creativity or insight) so that I can still get things done. However, I appear to have had limited success at doing this so far.
