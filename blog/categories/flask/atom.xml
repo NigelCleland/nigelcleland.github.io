@@ -4,7 +4,7 @@
   <title><![CDATA[Category: flask | Electric Python]]></title>
   <link href="http://NigelCleland.github.io/blog/categories/flask/atom.xml" rel="self"/>
   <link href="http://NigelCleland.github.io/"/>
-  <updated>2013-06-01T18:13:41+12:00</updated>
+  <updated>2013-06-01T20:47:35+12:00</updated>
   <id>http://NigelCleland.github.io/</id>
   <author>
     <name><![CDATA[Nigel Cleland]]></name>
@@ -26,7 +26,77 @@ I&rsquo;ve never done web dev before and it has been an interesting learning exp
 
 <p>Once this is done, I&rsquo;ll try and extend it and get some fancier features going on, visualisations etc. It will be interesting working with these to see how python can be used in such a fashion. May end up dictating some of the other work I do as well which I may want to expose via websites.</p>
 
-<p>This post is currently a work in progress</p>
+<p>This post is currently a work in progress, where I&rsquo;m up to so far</p>
+
+<h2>Flask</h2>
+
+<p>Flask is a python micro framework which is used for web applications.
+It&rsquo;s small, contains very few lines of code, and relies heavily upon two other libraries Werkzeug and Jinja. I&rsquo;m currently implementing the project using a module type approach as follows</p>
+
+<p>```
+trackme/</p>
+
+<pre><code>runserver.py
+trackme/
+    static/
+        style.css
+    templates/
+        # templates
+    __init__.py
+    database.py
+    views.py
+    models.py
+    forms.py
+</code></pre>
+
+<p>```</p>
+
+<p>Currently:</p>
+
+<ul>
+<li>models contains the SQLAlchemy tables</li>
+<li>database contains the SQLAlchemy setup infor</li>
+<li>views contains the flask page views</li>
+<li>forms contains the WTForms Forms</li>
+<li><strong>init</strong>.py contains the app itself</li>
+</ul>
+
+
+<h2>SQLAlchemy</h2>
+
+<p>SQLAlchemy is a library which is used to create a bit of magic when it comes to SQL databases. Currently I&rsquo;m just running a local SQLite database and I&rsquo;m not too too worried about anything surrounding this as this is just a personal fun project at the moment.</p>
+
+<h2>WTForms</h2>
+
+<p>WTForms, this is designed to make Forms far far easier to use. I&rsquo;m still getting my head around a lot of this but I&rsquo;ve made good progress so far.</p>
+
+<h2>Templates: Jinja 2</h2>
+
+<p>I&rsquo;m currently not really sure how to create my own templates, nor what these are really doing but it&rsquo;s something I plan on learning more about as I go.</p>
+
+<h2>CSS</h2>
+
+<p>I don&rsquo;t really know a hell of a lot about CSS but I guess I&rsquo;m going to have to find out!</p>
+
+<h2>Plotting</h2>
+
+<p>I&rsquo;m currently not to sure what I&rsquo;m going to use for plotting things out, I&rsquo;m currently leaning towards either d3.js or vincent. I&rsquo;ve been looking for an excuse to try something apart from matplotlib for awhile now so will just have to see how this goes.</p>
+
+<h2>To do:</h2>
+
+<p>Wow, the list of things to actually get done to make this up and running are intense. I guess I can separate these into broad functionality steps.</p>
+
+<ol>
+<li>Ability to add workouts quickly and easily
+1a. Begin writing tests to ensure that everything works</li>
+<li>Ability to view workouts easily</li>
+<li>Add support for profiles</li>
+<li>Figure out templates, more html and templates to beautify the app a touch.</li>
+<li>Implement graphical plots for progress</li>
+<li>Add measurements, e.g. weight/size etc to help track progress</li>
+<li>Begin extending the app to track other aspects (e.g. food/stretching/w.e.)</li>
+</ol>
+
 ]]></content>
   </entry>
   
