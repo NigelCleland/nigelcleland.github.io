@@ -4,7 +4,7 @@
   <title><![CDATA[Category: python | Electric Python]]></title>
   <link href="http://NigelCleland.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://NigelCleland.github.io/"/>
-  <updated>2013-05-27T21:11:56+12:00</updated>
+  <updated>2013-06-01T18:13:41+12:00</updated>
   <id>http://NigelCleland.github.io/</id>
   <author>
     <name><![CDATA[Nigel Cleland]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Experimenting with Flask and Web Development]]></title>
+    <link href="http://NigelCleland.github.io/blog/2013/06/01/experimenting-with-flask-and-web-development/"/>
+    <updated>2013-06-01T18:09:00+12:00</updated>
+    <id>http://NigelCleland.github.io/blog/2013/06/01/experimenting-with-flask-and-web-development</id>
+    <content type="html"><![CDATA[<p>I&rsquo;m currently experimenting with using Flask for a bit of Web Development.
+I&rsquo;ve never done web dev before and it has been an interesting learning experience so far. I&rsquo;m going to create a fairly simple tracking app for the gym etc, basically get a Database set up and some logging going on.</p>
+
+<!-- more -->
+
+
+<p>Once this is done, I&rsquo;ll try and extend it and get some fancier features going on, visualisations etc. It will be interesting working with these to see how python can be used in such a fashion. May end up dictating some of the other work I do as well which I may want to expose via websites.</p>
+
+<p>This post is currently a work in progress</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Tutorial Series: Merging Series with Pandas]]></title>
