@@ -4,7 +4,7 @@
   <title><![CDATA[Electric Python]]></title>
   <link href="http://NigelCleland.github.io/atom.xml" rel="self"/>
   <link href="http://NigelCleland.github.io/"/>
-  <updated>2013-06-01T20:47:35+12:00</updated>
+  <updated>2013-06-03T20:03:10+12:00</updated>
   <id>http://NigelCleland.github.io/</id>
   <author>
     <name><![CDATA[Nigel Cleland]]></name>
@@ -12,6 +12,95 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Custom LaTeX chapter heading with image]]></title>
+    <link href="http://NigelCleland.github.io/blog/2013/06/03/custom-latex-chapter-heading-with-image/"/>
+    <updated>2013-06-03T19:32:00+12:00</updated>
+    <id>http://NigelCleland.github.io/blog/2013/06/03/custom-latex-chapter-heading-with-image</id>
+    <content type="html"><![CDATA[<p>A brief command to incorporate an image as part of a chapter heading, and position it so that it makes sense. This took about 30 minutes of googling to pull together the appropriate pieces, not a great use of time but I learnt a couple new LaTeX tricks while I was doing it so that&rsquo;s all good.</p>
+
+<!-- more -->
+
+
+<p>What I wanted was the ability to include an image directly above a chapter title in a LaTeX report. This was so that I could define both a chapter title and image and have everything just &ldquo;work&rdquo; and be scaled appropriately. I should note, that this technique works best with wide screen images. In particular, for consistent sizing of the images each one should have the same resolution (otherwise it will scale oddly).</p>
+
+<p>Furthermore, the command also supports an appropriate inclusion in the table of contents which is nice and means we can just use it as a stand alone command.</p>
+
+<p>This is best demonstrated via example as follows</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='latex'><span class='line'><span class="k">\documentclass</span><span class="na">[12pt, a4paper]</span><span class="nb">{</span>report<span class="nb">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">\usepackage</span><span class="nb">{</span>titlesec<span class="nb">}</span>
+</span><span class='line'><span class="k">\usepackage</span><span class="nb">{</span>geometry<span class="nb">}</span>
+</span><span class='line'><span class="k">\usepackage</span><span class="nb">{</span>graphicx<span class="nb">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">\newcommand*</span><span class="nb">{</span><span class="k">\imgchapter</span><span class="nb">}</span>[2]<span class="nb">{</span>
+</span><span class='line'>  <span class="k">\refstepcounter</span><span class="nb">{</span>chapter<span class="nb">}</span>
+</span><span class='line'>  <span class="k">\newgeometry</span><span class="nb">{</span>top=0cm<span class="nb">}</span>
+</span><span class='line'>  <span class="k">\addcontentsline</span><span class="nb">{</span>toc<span class="nb">}{</span>chapter<span class="nb">}{</span><span class="k">\protect\numberline</span><span class="nb">{</span><span class="k">\thechapter</span><span class="nb">}</span>#1<span class="nb">}</span>
+</span><span class='line'>  <span class="k">\chaptermark</span><span class="nb">{</span>#1<span class="nb">}</span>
+</span><span class='line'>  <span class="k">\begin</span><span class="nb">{</span>center<span class="nb">}</span>
+</span><span class='line'>  <span class="k">\makebox</span><span class="na">[\textwidth]</span><span class="nb">{</span><span class="k">\includegraphics</span><span class="na">[width=\paperwidth]</span><span class="nb">{</span>#2<span class="nb">}}</span>
+</span><span class='line'>  <span class="k">\end</span><span class="nb">{</span>center<span class="nb">}</span>
+</span><span class='line'>  <span class="nb">{</span><span class="k">\normalfont\huge\bfseries</span>
+</span><span class='line'>  <span class="k">\chaptertitlename\ \thechapter</span>:  #1<span class="nb">}</span>
+</span><span class='line'>  <span class="k">\restoregeometry</span>
+</span><span class='line'><span class="nb">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+</span><span class='line'><span class="k">\tableofcontents</span>
+</span><span class='line'><span class="k">\imgchapter</span><span class="nb">{</span>This is a test chapter<span class="nb">}{</span>test.png<span class="nb">}</span>
+</span><span class='line'><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And we can also check out the finished product as well</p>
+
+<p><img src="http://NigelCleland.github.io/images/june2013/chapter_test.png"></p>
+
+<p>As you can see we&rsquo;ve introduced an image above our chapter heading, the table of contents is still all set up and generally life is good.
+Now, if the above code isn&rsquo;t working properly please make sure the appropriate packages are installed. Additionally, I did have to remove a few percentage signs as they appeared to be making the ruby parser bork or something along those lines.</p>
+
+<p>One thing you may want to change is that I prefer the Chapter X: chapter title to all be on a single line. Whereas the default LaTeX style has them on separate lines.</p>
+
+<p>Sources, aka where the real credit lies</p>
+
+<p>Image Manipulation:
+<a href="http://tex.stackexchange.com/a/3548">Will Robertson</a>,
+<a href="http://tex.stackexchange.com/a/39148">Werner</a>,
+<a href="http://tex.stackexchange.com/a/35865">Schweinebackge</a></p>
+
+<p>Chapter Changes: <a href="http://tex.stackexchange.com/a/25031">Alan Munn</a></p>
+
+<p>Margins: <a href="http://stackoverflow.com/a/16259351">Kevin Chen</a></p>
+
+<p>Hope this is helpful</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Experimenting with Flask and Web Development]]></title>
