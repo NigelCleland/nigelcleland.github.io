@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Bittorrent sync | Electric Python]]></title>
+  <link href="http://NigelCleland.github.io/blog/categories/bittorrent-sync/atom.xml" rel="self"/>
+  <link href="http://NigelCleland.github.io/"/>
+  <updated>2013-06-07T12:45:47+12:00</updated>
+  <id>http://NigelCleland.github.io/</id>
+  <author>
+    <name><![CDATA[Nigel Cleland]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[On Bittorrent Sync]]></title>
+    <link href="http://NigelCleland.github.io/blog/2013/06/07/on-bittorrent-sync/"/>
+    <updated>2013-06-07T12:21:00+12:00</updated>
+    <id>http://NigelCleland.github.io/blog/2013/06/07/on-bittorrent-sync</id>
+    <content type="html"><![CDATA[<p>So Bittorrent Sync is the newest offering from BitTorrent and I must say I am in love. Broadly, it allows you to synchronise folders between multiple computers quickly and easily. In this way it is very similar to Dropbox and other equivalents (Drive, SkyDrive, Box, iCloud) etc. Now those other services have their own lists of benefits and negatives which I&rsquo;m not going to cover here. Instead, this post is about BitTorrent Sync.</p>
+
+<p>First, Bittorrent has been given a bit of a bad rep in recent years due to its proliferation in the use of internet piracy. However, such a use is technology agnostic and a number of other individuals and companies are using BitTorrent for entirely legitimate purposes. Simply, it reduces the requirement for centralised servers for downloading and sharing files between multiple people. In effect, cutting down on costs and bandwidth requirements for people who have many large files to share.</p>
+
+<!-- more -->
+
+
+<p>Notable users include many linux distributions, World of Warcraft and the BBC iPlayer (these are all from memory, they may have changed). Simply by redistributing the burden of distributing files to the community multiplier network effects can be induced. For example, the more people who are sharing a particular download the fast that distribution can be expected to occur. As many people do not fully utilise their bandwidth and connections such sharing is a simple way of piggybacking off the existing infrastructure.</p>
+
+<p>Other benefits include the potential to use local versions (instead of grabbing a copy off the US and using limited international bandwidth) the abundant local fibre networks can be used. This is similar in principle to an ISP maintain a local Content Delivery Network for large downloaded files (for example streaming services/steam/etc). So what on earth do these two things have in common?</p>
+
+<p>Enter BitTorrent Sync.</p>
+
+<p>BitTorrent Sync incorporates the power of the bittorrent protocol along with the ease of use of Dropbox and its ilk. Furthermore, as everything is local it has the following advantages.</p>
+
+<ol>
+<li>You can sync everything over a LAN if available (e.g. don&rsquo;t need to use limited bandwidth)</li>
+<li>No size limits!</li>
+<li>Can share with as many, or as few, people as desired making it perfect for collaborating on documents etc where a full version control system such as git would be overkill.</li>
+<li>All files are stored locally so you can safely share sensitive information without use of a central server.</li>
+<li>Control</li>
+<li>One way synchronisation</li>
+</ol>
+
+
+<h2>Syncing over LAN.</h2>
+
+<p>This one here is crucial for me. In New Zealand we have very limited, very expensive bandwidth caps which make the constant syncing of large changes to DropBox folders a major pain in the proverbial. Being able to Sync everything over LAN means I can set up my backups incredibly simply (I use a RPi powered set up for this) and generally just take the hassle out of everything.</p>
+
+<h2>No Size Limits!</h2>
+
+<p>I have GBs of raw data which I&rsquo;m continuously doing analysis on, sometimes on different computers and platforms. Simply having a consistent space for all of my data so that I can be assured that what works on one computer will work on another is an absolute pleasure.</p>
+
+<h2>Unlimited, personalised sharing</h2>
+
+<p>I know I know DropBox etc can do this to. However it&rsquo;s still a major plus that I can set up a customised sharing lists both with myself and with other people (e.g. different folder sharing to share photos with friends and loved ones). I&rsquo;m not personally a fan of the &ldquo;put everything on Facebook&rdquo; style of sharing and prefer to share high quality original files where appropriate. This makes it easy, and as an added bonus I keep control of my files and documents.</p>
+
+<h2>Local Versions only</h2>
+
+<p>All BitTorrent sync traffic is fully encrypted. Thus, you can feel safe that all files shared are only going to be available to those people you want to see them. No worries about leaving things on usb drives, or sending them via email attachments. Simply just share the folder or file directly with bittorrent sync.</p>
+
+<h2>Control</h2>
+
+<p>I know a lot of people don&rsquo;t care about this, however from a personal point of view I adhere to the &ldquo;If the product is free, then you are the product&rdquo; mantra of the internet. Being solicited for advertisements based upon the files I&rsquo;m sharing for work/personal purposes is not something I ever want to happen in the future. Nor do I have to worry about what happens if a Service such as DropBox or Google Drive change their terms of service. As such I&rsquo;m much less locked into the Sync platform than the others, this low friction environment is preferential for personal reasons to me.</p>
+
+<h2>One Way Synchronisation</h2>
+
+<p>There are many occasions when I want someone to be able to see what I&rsquo;m working on, but don&rsquo;t want them to modify my source. If two way synchronisation is enabled by default then I have to maintain my own local version to ensure that someone doesn&rsquo;t accidentally wipe my shared version. This is a major PITA and a source of friction and can often lead to the dreaded filename_author_date_version_latest_seriously_SERIUOSLY.ext filenaming system which I have seen utilised quite often. Quite simply this just isn&rsquo;t an acceptable way of conducting business. At all.</p>
+
+<h2>Convinced yet?</h2>
+
+<p>Convinced? Give it a try, it&rsquo;s free! You can find the download and other material at the <a href="http://labs.bittorrent.com/index.html">BitTorrent Sync</a> website.</p>
+]]></content>
+  </entry>
+  
+</feed>
