@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Personal | Electric Python]]></title>
+  <link href="http://NigelCleland.github.io/blog/categories/personal/atom.xml" rel="self"/>
+  <link href="http://NigelCleland.github.io/"/>
+  <updated>2013-08-11T16:29:45+12:00</updated>
+  <id>http://NigelCleland.github.io/</id>
+  <author>
+    <name><![CDATA[Nigel Cleland]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Update]]></title>
+    <link href="http://NigelCleland.github.io/blog/2013/08/11/update/"/>
+    <updated>2013-08-11T16:06:00+12:00</updated>
+    <id>http://NigelCleland.github.io/blog/2013/08/11/update</id>
+    <content type="html"><![CDATA[<p>So a brief update it most likely due, it has been a substantial period of time since I lost wrote a post.
+Although no-one reads this blog so that is all perfectly fine.
+Since my last post I&rsquo;ve travelled round Europe for a few weeks, presented at a conference, hit some gym PR&rsquo;s and worked on some exciting elements.</p>
+
+<!-- more -->
+
+
+<h1>Europe</h1>
+
+<p>What can I say, I had a three week trip around Europe by myself and learnt a lot.
+It began in Ireland, starting with the Universitas 21 Energy policy conference in Dublin which was hosted by UCD.
+I had a fantastic time, presented on the first day and thoroughly enjoyed the people, and the experience.
+The social aspects included a few outings around Irish pubs, a lot of Guiness and plenty of interesting discussions.
+The general theme of the conference was Energy with speaks presenting on technical aspects, policy and systems.
+There was a very strong distinction between countries with speakers from different nationalities tending to reflect what was important from those countries.
+As such, the students from the USA tended to speak about technological solutions, from Europe about social policies, from Asia about poverty alleviation.
+All together a fascinating viewpoint as to how different parts of the world view different problems.</p>
+
+<p>From Ireland I travelled to Berlin where I spent five days.
+If you&rsquo;ve never been to Berlin, I highly recommend it.
+I had an incredible time, the people were fantastic and the sites superb.
+I had the best burger of my life in Kreuzberg and enjoyed walking off a couple hangovers at the Berlin Zoo.
+I went on a number of tours, met dozens of cool people at the hostels and had a really good time.</p>
+
+<p>From Berlin I travelled to Frankfurt, pretty much on a whim.
+One thing I need to mention is that I arrived in Europe with no set plans, no accomodation booked and the only requirement being that I make a flight back to NZ from Paris.
+As such, I ended up in Frankfurt with an open mind.
+My hostel was located in the red light district which was pretty hilarious as I kept questioning if I was in the right place.
+Nonetheless, I felt safe here.
+Frankfurt the city has a number of gorgeous museums, cool bars, great people and interesting architecture.
+The Frankfurt city forum was on at the time and a lot of sausages were eaten at the street stalls.
+One of my favourite places was the Goethe museum which was a little three story building.
+The most amazing German realist naturalist paintings from the mid 19th century were inside.
+I was completely blown away.</p>
+
+<p>From Frankfurt I travelled to Cologne where, after not really knowing the cathedral existed, I had quite a shock after walking out of the train station.
+Cologne was a very cool city, the shopping district was really well put together, the architecture interesting and the people really nice.
+Not to mention the beer here was, cheap, delicious and plentiful.</p>
+
+<p>Leaving Frankfurt I travelled to Paris where I had a mixed experiment.
+By this point in the trip I was getting a little worn down.
+Travelling non-stop for 2 weeks straight had led to a lot of blisters, sore feet and a lack of clean clothes.
+The city itself was incredibly spectacular with the view from the top of the arc de triomphe a must see.
+However the city itself was expensive, jammed full of tourists and the general vibe from the people was one of rudeness.
+So far in my trip I would have happily returned to any of the other cities.
+However, I don&rsquo;t feel any particular desire to travel to Paris again.
+It was just simply not enjoyable.</p>
+
+<h1>Work</h1>
+
+<p>It was a bit of culture shock getting back and needing to work again.
+It did take me a few weeks to get into it but now I&rsquo;m back into the swing of things.
+My current projects include an assessment of spot price dynamics, an assessment of wind energy and a look into simulations regarding Pole 3.
+All in all, a lot of work on and I&rsquo;m excited about my current research.
+A big push has been doing a little a lot.
+Although I typically work best in bursts, with periods of extreme activity followed by inactivity I&rsquo;ve been attempting to mitigate this.
+One element of this is not trying to &ldquo;force&rdquo; the work but simply to switch tasks rather than becoming stuck.
+I&rsquo;m still not accomplishing this as well as I would hope but I&rsquo;m making progress.</p>
+
+<h1>Other</h1>
+
+<p>I&rsquo;ve been continuing my reading with book depository doing very well by me.
+I&rsquo;m still in a physical book stage, with ebooks currently not taking my fancy.
+Although I own multiple computing devices, tables, kindles etc the recent security revelations, plus decision making of American IT companies has broadly soured me on entrusting my data to them.
+I&rsquo;ve been assessing moving away from their stranglehold as I see little reason to continue using their services.
+A big one has been migrating more of my document storage and back ups away from Dropbox to a three way synchronisation using BT sync and a raspberry pi.
+I still need to complete this however.
+I&rsquo;m looking into alternatives to gmail with mailpile being a possible alternative.
+However at this stage it is looking as though Google will still be getting my service.</p>
+
+<p>On another note I&rsquo;m very excited about Ubuntu touch and I&rsquo;m looking forward to flashing an image on to my Nexus 7.
+The Ubuntu edge campaign has been interesting to follow but it appears as though it will fail.
+In addition, given the exchange rates the phone was just priced slightly outside what I&rsquo;m willing to pay.
+For my next phone I will most likely be getting a Nexus 4, which I&rsquo;ll attempt to put Ubuntu touch on.</p>
+
+<p>I&rsquo;m currently considering what I want my next personal project to be.
+It&rsquo;s a bit of a struggle balancing my time appropriately as between work, gym, life admin and reading it can be quite limited.
+I&rsquo;m looking into learning either Haskell, or possibly more about web development including D3.
+D3, HTML and CSS look like they&rsquo;ll be more relevant at this stage but the premise of functional programming and Haskell look quite fascinating.
+I need to bite the bullet and choose one of these soon though however.</p>
+
+<p>In the gym things have been going fantastic.
+I&rsquo;ve been hitting multiple PR&rsquo;s.
+Bought some new squat shoes and have been really enjoying it all.
+Currently very happy with how things are progressing although I do need to work on my mobility a bit more.</p>
+
+<p>This has gotten long enough now so I&rsquo;ll just leave it here.</p>
+]]></content>
+  </entry>
+  
+</feed>
