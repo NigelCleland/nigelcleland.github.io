@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Custom cookie cutter python templates - Electric Python</title>
+  <meta name="author" content="Nigel Cleland">
+
+  
+  <meta name="description" content="I&rsquo;ve been experimenting lately with custom cookie cutter templates for developing python projects.
+Now, what is a cookie cutter template?
+Well &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://NigelCleland.github.io/blog/2013/09/10/custom-cookie-cutter-python-templates">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Electric Python" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Electric Python</a></h1>
+  
+    <h2>Thoughts on Open Source, Electricity Markets and History</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:NigelCleland.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Custom Cookie Cutter Python Templates</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-10T17:42:00+12:00" pubdate data-updated="true">Sep 10<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&rsquo;ve been experimenting lately with custom cookie cutter templates for developing python projects.
+Now, what is a cookie cutter template?
+Well, it&rsquo;s a simply template which capitalises upon the excellent cookiecutter tool developed by Audrey Roy.
+What the tool does is use jinja2 templates in order and a .json file in order to create a basic outline of a project.</p>
+
+<!-- more -->
+
+
+<p>Sounds simple right?
+And indeed it is, especially since Audrey has already developed a master pypackage template which is quite useful for ordinary projects.
+However the issue I&rsquo;ve found with most of these is that a lot of the work I do has C dependencies in the scientifc stack, e.g. numpy, scipy, matplotlib, pandas etc.
+These dependencies tend to absolutely crap themselves, especially when using Sphinx on an online documentation site such as Read the docs.
+This occurs as RTD doesn&rsquo;t build C extensions for you, so you need to make a few special requirements in order to get the imports working properly.
+Really frustrating to say the least.</p>
+
+<p>Furthermore, the default Sphinx docstrings method is somewhat archaic and has a numpy of kind of awkward formatting requirements.
+What I wanted was a template which would automatically create what I wanted for a data analysis python project.</p>
+
+<p>Ideally I&rsquo;d have the following requirements:</p>
+
+<ol>
+<li>Automatic installation of core dependendencies in a virtualenv.
+
+<ul>
+<li>Numpy</li>
+<li>Pandas</li>
+<li>Matplotlib</li>
+</ul>
+</li>
+<li>Updating the Sphinx documentation to be able to handle mathematical equations as well as numpydoc style formatting. This requires the following:
+
+<ul>
+<li>numpydoc</li>
+<li>mathjax</li>
+</ul>
+</li>
+<li>An updated MakeFile to handle some of the new functionality</li>
+</ol>
+
+
+<p>So, what I&rsquo;ve developed is an updated fork of Audreys pypackage template which handles these updates.
+I&rsquo;ve named it, entirely creatively of me, (cookiecutter-pypackage-scistack)[<a href="https://github.com/NigelCleland/cookiecutter-pypackage-scistack">https://github.com/NigelCleland/cookiecutter-pypackage-scistack</a>].</p>
+
+<h1>LaTeX Templates</h1>
+
+<p>Now, given that we can create these excellent Python templates, wouldn&rsquo;t it be great to have the same for LaTeX templates?
+A lot of the things required in a LaTeX document are cruft to get set up.
+It would be fantastic to not have to deal with this.
+Furthermore, one of the biggest issues I&rsquo;ve had is getting multiple formatted versions of the same document up and running.</p>
+
+<p>Now, I also want to use git to manage my documents and version control.
+I recommend using bitbucket for this as they provide free private repos.
+Thus, it makes sense to create a template which handles the basics.
+Now these are still a complete work in progress but I figured I&rsquo;d write about them.</p>
+
+<h2>Enter the cookiecutter-latex-* family.</h2>
+
+<h3>Journal</h3>
+
+<p>The (cookiecutter-latex-journal)[<a href="https://github.com/NigelCleland/cookiecutter-latex-journal">https://github.com/NigelCleland/cookiecutter-latex-journal</a>] package contains a brief template to setting up Journal Articles.
+Currently supports a plain and a IEEE style, upcoming styles to support include the Elsevier as well as others which I may find useful.
+The goal of this subject is to have a single, primary source of content, e.g. the main.tex file (Note that this may import chapters etc for larger files).
+This file is then called by a number of containers which will create the necessary PDFs from this via a MakeFile.</p>
+
+<p>Now the advantages of this template is that formatting and content are separate entities.
+Multiple versions of the same document can be produced automatically.
+Designed to be used with git for version control for more flexibility and power.
+Single unified source of images and tables. (Note that I included a separate tab file as I generate most of my tables from csv files using a custom tool I&rsquo;m going to write about soon once I tidy it up a bit.)</p>
+
+<h3>Still to come:</h3>
+
+<p>Now, I&rsquo;m also looking at extending this family to include more general templates.
+My currently anticipated use cases are broadly the Memoir, Report and Beamer classes for books, reports and presentations respectively.
+Most critical to me is the Beamer template which I&rsquo;ll most likely implement next.
+Would be very cool to have a number of templates automatically implemented for
+different styles although the author will likely narrow this down to one style eventually.</p>
+
+<h1>Where to next:</h1>
+
+<p>What I&rsquo;m most excited about with cookiecutter is the upcoming hooks feature.
+This feature allows custom scripts to be run both before and after initialising the repo.
+Would be great to have this automatically create a repo via the github api, run the initial commit and push the data up automatically to save an additional step.
+Rinse and repeat this for read the docs integration and other services as well.
+In short lots of interesting stuff.</p>
+
+<p>A lot of my code is still rough as I&rsquo;ve been hit by a lot of stuff lately so I haven&rsquo;t had the opportunity to polish as I would like</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Nigel Cleland</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-10T17:42:00+12:00" pubdate data-updated="true">Sep 10<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://NigelCleland.github.io/blog/2013/09/10/custom-cookie-cutter-python-templates/" data-via="" data-counturl="http://NigelCleland.github.io/blog/2013/09/10/custom-cookie-cutter-python-templates/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/08/11/update/" title="Previous Post: Update">&laquo; Update</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/09/10/custom-cookie-cutter-python-templates/">Custom cookie cutter python templates</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/11/update/">Update</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/07/on-bittorrent-sync/">On Bittorrent Sync</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/03/custom-latex-chapter-heading-with-image/">Custom LaTeX chapter heading with image</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/01/experimenting-with-flask-and-web-development/">Experimenting with Flask and Web Development</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/NigelCleland">@NigelCleland</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'NigelCleland',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Nigel Cleland -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'electricpython';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://NigelCleland.github.io/blog/2013/09/10/custom-cookie-cutter-python-templates/';
+        var disqus_url = 'http://NigelCleland.github.io/blog/2013/09/10/custom-cookie-cutter-python-templates/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
