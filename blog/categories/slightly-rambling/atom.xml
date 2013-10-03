@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Slightly Rambling | Electric Python]]></title>
+  <link href="http://NigelCleland.github.io/blog/categories/slightly-rambling/atom.xml" rel="self"/>
+  <link href="http://NigelCleland.github.io/"/>
+  <updated>2013-10-03T20:51:08+13:00</updated>
+  <id>http://NigelCleland.github.io/</id>
+  <author>
+    <name><![CDATA[Nigel Cleland]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Perfection is the enemy of itself]]></title>
+    <link href="http://NigelCleland.github.io/blog/2013/09/30/perfection-is-the-enemy-of-itself/"/>
+    <updated>2013-09-30T21:51:00+13:00</updated>
+    <id>http://NigelCleland.github.io/blog/2013/09/30/perfection-is-the-enemy-of-itself</id>
+    <content type="html"><![CDATA[<p>A bold title for a personal essay but a thought which has been kicking around the back of my mind for a while now.
+Perfection, as a goal often leads to poorly executed, unfinished, bloated projects.
+The very nature of seeking the perfect solution often dooms the searcher to no solution, a less than worthwhile result.
+This post will expand my thoughts in this area, as well as illustrating some opposing methodologies which should hopefully serve the reader well.</p>
+
+<!-- more -->
+
+
+<p>To expand upon my premise I must take a short divergence into some personal anecdotes.
+The first anecdote is that I go through transitional periods of both extreme productivity and extreme procrastination.
+If I can find a project, or a problem which fascinates me then I can literally lose myself in the moment, and find the oft mentioned sense of flow commonly experienced by deeply skilled practitioners.
+This post is now about those moments, those are moments to be husbanded, guarded jealously and ruthlessly exploited when they arrive.</p>
+
+<p>Instead, this essay is about those other moments, those moments which you find yourself on a four hour youtube binge, or reading poorly worded terribly thought out comments on reddit.
+This is a post about those periods in my life when I cannot get started, when I lose myself in a mental haze of self destructive melancholy.
+I don&rsquo;t like these phases, I consider my time valuable and numerous other individuals have confirmed this to me both monetarily and through the expenditure of their own limited time.</p>
+
+<p>As such, how can I limit my own self destruction?
+How can I use my time in such a way as to be in a continuous state of advancement?
+The phrase, live each day as if it were your last is disgraceful in its implications.
+If a day were truly my last then I would be out buying hookers, blowing through my entire savings and having one of the most amazing parties of my life.
+Instead, a better philosophy would be to live each day so that the following day will be better.
+Under such a philosophy exercise, education, the pursuit of new skills, forming new relationships are all valuable worthwhile endeavours.
+It is from this state of mind that I&rsquo;ll be approaching the rest of this topic.</p>
+
+<p>How does this relate to my thesis topic, that perfection is the enemy of itself?
+I implore the reader to think back to their own learning and assess whether the lessons I&rsquo;ve gleaned are of any value to them.
+We often hear statements regarding mastery of a particular subject requiring 10,000 hours, in fact we hear this so much it has begun to lose meaning.
+I pose the situation of a person who learns the same one hour lesson 10,000 times as compared to the 10,000 different one hour lessons, that is the extreme scenarios.</p>
+
+<p>The person who has studied the one hour lesson a plurality of times will have excellent knowledge of that particular lesson.
+However, who is to say that the 10,000th time provided a greater mastery over the particular skill than the 9,999th lesson?
+How about as compared to the 5,000th lesson?
+The 2,000th?
+If we were to plot such a relationship we would discover a clear scenario of diminishing returns, yet this still does not give us any information regarding how many lessons are optimal.
+Such an example is absurd but it does serve to illustrate the point that continuous repetition of the same material has negligible value.</p>
+
+<p>We consider the second extreme, of the individual who has learnt 10,000 different lessons.
+Here, there exists a number of competing scenarios.
+Scenario one, the relationship between mastery and repitition initially follows a steep upward trajectory.
+In such a situation each additional lesson provides reduced marginal value as compared to the preceding lesson and therefore the individual gains maximal marginal utility from each possible lesson.</p>
+
+<p>The second possibility is that marginal utility follows a class S-curve pattern.
+That is, the initial lesson provides a small amount of utility, and that subsequent lessons will increase marginal utility, to a point, before a taper begins.
+This curve is recognisable in many instances of social sciences, for example the product adopters curve (e.g. early adopters to mass market to the last remaining hold outs).
+If the lesson utility follows such a curve then the individual who studies many lessons briefly will gain reduced utility.</p>
+
+<p>Both of these scenarios have considered the assumption in that learning one particular skill is independent of any other skills.
+However, such a vacuum dependent theory fails to translate appropriately to the real world.
+Consider two possible effects, translated knowledge and crowding out.</p>
+
+<p>Translated knowledge occurs when knowledge in one particular domain positively influences knowledge in a second, unrelated domain.
+For example, if you read more speculative literature then I will in turn speculative that you have a greater grasp of ambiguities than a corresponding version of you which does not read said literature.
+That is, knowledge and learning in one discipline has effected a second domain.
+Knowledge in which this general rule applies is incredibly empowering, taken to an extreme this could imply that to get better at things all that is required is a general improvement.
+Clearly, at the absurd level this idea falls flat, however I do consider it of some merit and will return to it shortly.</p>
+
+<p>The second scenario, crowding out occurs due to limitations in human short term recall and our ability to process information.
+Although the human brains ability to process information is vast, it is not perfect.
+Humans can only consider a limited number of scenarios into the future, we often use short term heuristics for decision making and none of us are perfectly rational entities.
+Given such prior limitations I consider the case of a human whose brain is continuously saturated with information.
+Would we expect such a person to have a high level grasp, of well, anything? Or would we expect such a person to simply be a walking talking collection of randomly assorted facts with no logical capacity to smoothly integrate them into a wider body of knowledge and understanding?
+I expect that given too much information the human brain would reject such an overload of information as to be useless.</p>
+
+<p>Thus, given our two scenarios both of which are over 10,000 hours I come to the following general conclusions.
+The first is that human knowledge in a particular domain most likely follows a S-curve.
+There exists some point, given a purely static field, in which our marginal appreciation will transition through an inflection point, switching from accelerating returns to decelerating returns.
+However, this statement is lessened in intensity if a field is continuously changing, although such a field, if the rate of flux is too great, will prevent all mastery from occurring.</p>
+
+<p>The second conclusion reached is that as we increase our knowledge in one particular domain we will expect some of the generalities to provide benefits in other domains.
+Although no substitute for specific knowledge in a particular field, this general skill transferral will assist the individual in either accelerating the aforementioned S curve, or providing a solid foundation.
+This is broadly the basis of many forms of schooling.
+For example as we learn how to form more complete sentences, this partially translates to our ability to write better paragraphs.
+However, the ability to write a perfect sentence does not imply the ability to write a perfect paragraph, nor a novel.
+The general skill is transferred, not the specific.</p>
+
+<p>The third conclusion reached is that an individual who spreads themself too thin, amongst too many fields, will never truly master any of those fields.
+That is, there is a hierarchy of domain mastery which can be expected.
+For example, a person could expect to master a single domain, or they could reach a high level of competency in two to four domains.
+An individual may be competent in a dozen different domains, but we would not expect the average individual to be a true master in any of those specifically.
+Likewise, a person who has spread himself amongst hundreds of fields will only have a cursory knowledge of these fields.
+I note that within an individuals knowledge a distribution will exists, that is they will have localised mastery of particular domains.
+However, this localised mastery is relative to their mastery of the remaining disciplines.
+As compared to a disciplined external party their competence will pale in comparison.</p>
+
+<p>Now, after the not so short sojourn we may return to the thesis at hand, Perfection is the enemy of itself.
+Isn&rsquo;t such a statement a form of cognitive dissonance on my part?</p>
+
+<p>Here I qualify this statement through a narrowness of application.
+Perfection is the enemy of itself when it is single mindedly applied to a single, specific, task not a general outcome.
+For example, consider a software project.
+A considerable amount of time may be spent on the project attempting to make a perfect, elegant, even beautiful piece of code.
+Something which works, is a pleasure to read and makes you feel like it was a worthwhile sense of accomplish.
+In fact, many hours could be spent crafting this particular item, the line by line debugging and optimisation.
+The continuous re factoring is ultimately wasted time and resources.</p>
+
+<p>I instead propose a better outcome.
+Consider what happens in three months times, when you find that said piece of code no longer fits the use case.
+I would guarantee that the same individual in their second attempt would be able to produce an even better piece of work.
+Likewise, if three months later on they had to (for whatever reason) do it again.
+Now, here I am almost leading down the wrong pathway in that I appear to be suggesting that continuously repeating yourself is a good idea.
+It&rsquo;s not.</p>
+
+<p>What is a good idea though is continuously learning from the lessons learnt in the first case and applying those to the subsequent cases.
+Broadly, you get better by doing, by continuously expanding your knowledge in a general field through specific applications.
+If you are a wood worker seeking to incorporate more curved cuts in your work you do not practice the same cut over and over.
+Instead, you seek to cut as many curves as possible, of all shapes and sizes and you learn how your tools work in such situations.
+Of course you will need to repeat specific cuts, because there is no substitute for mastery of a single task than repetition of said task.
+However, always keep in mind the diminishing returns present, and be aware of the distinctions between adequate, good, great and perfect.
+Striving for perfect is not something you plan for, but good and great are worthwhile outcomes.</p>
+
+<p>So far, I have illustrated some of the issues of both too much, and too little, attention upon particular tasks.
+Yet, this speaks nothing as to the goldilocks zone, of just right.
+Simply, this particular point will vary form task to task, individual to individual but some broad guidelines may be considered.
+We may also extend these into a few real world strategies.</p>
+
+<p>We must begin to recognise which knowledge is related within our cognitive sphere of influence.
+Look for the similarities between disciplines, don&rsquo;t operate in a vacuum and don&rsquo;t brainlessly repeat tasks repetitively.
+It is a special form of insanity to repeat the same task over and over again and expect a different result.
+If you are getting different results, you many want to look into functional programming.</p>
+
+<p>Recognise that if you want to get better at a particular skill that it will take a consistent application of time, energy and cognitive resources.
+But do not focus these three inputs upon too narrow a field.
+I thoroughly enjoy rock climbing, but it is naive to think I will ever progress in the sport if I stick to climbing the same wall, in the same way, over and over again.
+However, if I were to practice upon a number of different walls my general skill would improve, if I were to fixate upon a particular wall within the greater subset I would likely be better at that individual one.
+Such an analogy is broadly applicable to other situations in life.</p>
+
+<p>Thus, I feel comfortable at this point taking an attempt at addressing my topic.
+Perfection is the enemy of itself because a single narrow minded pursuit of a particular, specific, goal limits all second order effects.
+By such a narrow field of vision you ignore all possible transferral of knowledge between domains.
+Diminishing marginal returns quickly sets in as the mind is stagnant and not exposed to new ideas.
+The authors general skill set atrophies as their brain rewires itself for a single task.
+Quite simply, seeking perfection on a specific project is like practising the same lesson ten thousand times.
+As such, perfection is the enemy of itself, because the individual has self limited themselves.
+In effect, by such a single minded focus they have capped the denominator and are seeking to raise the numerator.
+By broadening their basis the individual can simultaneously raise both sides of the equation resulting in a better, but still not perfect project.
+The single minded pursuit has resulted in a worse outcome than the somewhat lackadaisical general improvement with a slight concentration on the project.</p>
+
+<p>Upon answering the topic I will now seek to expand upon some possible strategies as a result of this.
+These strategies are intended primarily for myself.
+As I mentioned in the introduction to this essay, I&rsquo;m a terrible procrastinator in certain situations and it is something which I am desperately seeking to fix.
+The broad strategies I wish to consider include cognitive displacement, inwards search and active procrastination.
+These are names which I have completely made up on the spot and as there is nothing new under the sun I&rsquo;ve likely plagiarised these off someone.
+Oh well, I don&rsquo;t care.</p>
+
+<p>Cognitive displacement is a simple principle in that the human body has a limited capacity for in depth learning and knowledge.
+That is, the mind may become overwhelmed and will not retain information passed to it.
+This is often observed in individuals, who suffering from cognitive overload, stress, anxiety, or a number of other factors experience a degraded mental acuity.
+I do not imply that there is a 1:1 replacement between new knowledge and old knowledge, rather that new knowledge is essentially shed before taking root.</p>
+
+<p>Every individual has a different tolerance for new mental experiences.
+This tolerance is influenced by factors such as intelligence, education, fatigue, alcohol, stress and noise.
+It remains to the individual to thus limit their own cognitive input to ensure maximum retention.
+This necessitates the removal of particular sources of information, for example low quality television, radio, print and other mediums.
+In the modern world this is doubly difficult.</p>
+
+<p>We live our lives saturated in low value content, and we do not possess the appropriate mechanisms to filtering this content.
+In particular, we must devote cognitive resources to assessing the importances of any informations, and what actions are required from this.
+Furthermore, if no action is required, and the information is not needed in the past then such activity is an unnecessary expenditure.
+On the internet, such forms of low value, non actionable information are prevalent.
+Memes, news from foreign countries, domestic scaremongering, celebrity gossip, pseudo scientific articles and other poorly written tripe are all a factor.
+Much of this information is designed to draw in the reader, through imagery, sensationalist titling and other parlour tricks.</p>
+
+<p>We thus live in a world where the very act of being aware of our surroundings exhausts our mental faculties.
+The danger is that we create individuals with short attention spans, a wide, but shallow knowledge of disparate events and views founded more on sensation than reason.</p>
+
+<p>Moving on from such a dull topic we reach inwards search.
+In opposition to cognitive displacement, inwards search is a positive, actionable step which an individual may take to sharpen their focus.
+Here, I seek to avoid labels, such as meditation or other labels which people use to dismiss an activity they do not agree with.
+Instead, I will call it either inwards search or active focussing.</p>
+
+<p>Enough of definitions and book keeping.
+Inwards search is the act of looking within yourself in order to achieve a desired outcome.
+There are many ways which people can achieve this and I will speak in generalities here.
+To begin, almost by definition, the act requires solitude, and the absence of external simulation in the sensory realm.
+I finding a location in which you can control the visual realm e.g. blind folds, dark rooms.
+Ideally the place should be quiet and comfortable and be removed from other individuals intrusions.</p>
+
+<p>Once you have found such a location, simply make yourself comfortable and sit or kneel.
+The goal is to find a position in which you can remain for at least twenty minutes.
+Upon reaching this position, seek to clear your mind of each of the distractions currently weighing upon you.
+Empty your mind of the stresses, the worries the mental intrusions.
+Instead, focus upon a particular situation, a problem, or simply drift.
+Here, be rigid with your thoughts, you don&rsquo;t care about the dishes, laundry or all of the other miscellaneous details you need to cover to live.
+During this period of time you must simply be.</p>
+
+<p>Now, how is this different from meditation or other quackery sounding buzzwords.
+The simple answer is that it is not.
+The long answer is that this time is whatever you want it to be.
+All that I am recommending is that you make the time.
+Find some peace, quiet and solitude, and simply unwind and be yourself for the day.
+You may hate this, you may love this, but either way I highly recommend that you try it at least a few times.
+Do note, that initially you will find it very difficult to still your mind to the distractions.
+You have most likely ingrained the habit of always being aware deep into your subconscious.
+This will take time to rectify.
+I personally like to take this time to stretch as well, I know that it&rsquo;s meant to be a period of absolute stillness but I find the deep stretch to be personally helpful.</p>
+
+<p>The next topic of consideration is active procrastinations.
+We all procrastinate to differing degrees and we do it in a number of different ways.
+Here, we must take a two pronged look at the issue.
+The first prong tackles the why of procrastination, it is thoroughly worthwhile to justify to yourself why you are undertaking a particular issue.
+You&rsquo;ll likely find yourself unable to answer.
+However, the caveat here is that you&rsquo;re most likely going to be in the mood where you just don&rsquo;t care that much.
+Thus, it becomes very hard to break outside of the vicious feed back loop which arises.
+You procrastinate because you&rsquo;re stressed and worn down.
+Because you procrastinated you feel even more stressed, you push yourself harder, become more anxious and get even more worn down.
+This causes you to procrastinate more.
+Rinse, repeat ad infinitum.</p>
+
+<p>Another name for this is burnout.</p>
+
+<p>How can we tackle this issue?
+I want the answer to this question just as much as you do.
+I have a very serious battle with procrastination, the feedback loop I was describing above is what I&rsquo;m currently experiencing.</p>
+
+<p>The strategy I&rsquo;m going to try is to take more breaks, earlier.
+Broadly, target my productive periods into shortened super intensity periods where I attempt to reach a state of flow.
+In the in between stages I want to reach a state of active procrastination, which I will define later.
+Intense focus is not required for hour upon hour.
+Instead, it is necessary to fully form the mental puzzle of a problem in peace and quiet.
+Solve said puzzle, and then let it go from your mind.
+Once you have tackled this issue relax and reach into some less cognitively intensive tasks.</p>
+
+<p>What I am currently stuck in is the awful middle ground.
+I am never truly at rest.
+Yet, I am never truly at my best.
+Instead, I meander through a middle ground of low efficiency and poor cognitive awareness.
+This stops me from relaxing, exhausts me and wears me down considerably.
+This, is my attempt at changing this behavioural pattern.</p>
+
+<p>The second prong is to look at the how we are procrastinating.
+What activities are currently being used as a procrastination aid in this respects.
+For me, my weakness is rapid content websites such as news sites, reddit, hacker news et cetera.
+These sites are like kryptonite to me.
+I love being continuously exposed to information, new ideas and new topics.
+It stimulates me, and that therein is the problem.</p>
+
+<p>I need to wean myself off my information crack.
+To initially accomplish this I&rsquo;m deleting my tablet apps which have this purpose.
+Setting up custom hosts files on my computer and installing a website blocker.
+I&rsquo;m going to be using the Chrome extension StayFocusd for this.
+Ideally the goal is that I just get off the internet in general.
+It is good for some things, but it isn&rsquo;t healthy to live your whole life through it.</p>
+
+<p>This is my personal procrastination method.
+It has limited value to me personally so I need to replace it.
+Here, we introduce the concept of Active Procrastination.
+This idea goes hand in hand with the earlier concepts introduced of having a super intensity period followed with lulls.
+Here, Active Procrastination serves to fill those lulls.</p>
+
+<p>The following is a list of activities which I consider to be worthy of consideration for the lulls and Active Procrastination.
+Your own definitions will obviously differ, so be an adult and write your own list.</p>
+
+<ul>
+<li>Weight Training</li>
+<li>Cooking something new (Not repeating an easy recipe)</li>
+<li>Reading</li>
+<li>Writing non seriously</li>
+<li>Stretching, Yoga, Meditation, Mindfulness</li>
+<li>Music Instruments</li>
+<li>Walking</li>
+<li>Socialising</li>
+<li>Urban Exploring</li>
+<li>Hiking/Tramping</li>
+<li>Photography</li>
+<li>Drawing/Painting/Caligraphy</li>
+<li>Programming</li>
+<li>Mechanical Maintenance (e.g. Car/Motorbike/Bicycle etc)</li>
+</ul>
+
+
+<p>In addition the following is a list of activities which fit a grey area.
+I include them because they definition is not hard and fast and they do improve life in some shape or form.
+However, some people do use this as procrastination aids.</p>
+
+<ul>
+<li>Cleaning</li>
+<li>Rote Cooking (E.g. something simple and easy to make)</li>
+<li>Busy work</li>
+<li>Shopping (When not taken to excess, everyone needs new clothes)</li>
+</ul>
+
+
+<p>The remainder should be cut from the life where possible.</p>
+
+<ul>
+<li>Mindless internet browsing</li>
+<li>Rapidly paced content driven websites (e.g. aggregators, news websites, youtube, twitter, facebook)</li>
+<li>Excessive masturbation (Key word being excessive)</li>
+<li>Pornography usage (Nothing against it personally, it is included as many people, guys especially, use it as a time filler, this may fit a grey area for some people.)</li>
+<li>Debating people on the internet. Just don&rsquo;t.</li>
+<li>Television</li>
+<li>Gossip Magazines</li>
+<li>Most forums</li>
+</ul>
+
+
+<p>The reader should begin to notice a clear trend occurring in the three different types.
+The goal of active procrastination is replace unhealthy habits with healthier ones.
+This time then becomes self improvement time, makes you a more interesting person and should hopefully make you happier.
+All of the content on the cut list is essentially modern day soma, cutting you off from the world you live in and replacing it with a fake world of manufactured bliss.
+I will write more about these concepts at a later date however.</p>
+
+<p>This I&rsquo;m afraid brings this very long post to a close.
+I have rambled off the initial topic somewhat.
+That is to be expected when it&rsquo;s late at night and you&rsquo;re reaching close to the 4k word mark however.
+I will expand in more depths upon some of the points in this essay at a later date.
+I may also revise this essay somewhat as I take the time to proof read it in the future.</p>
+]]></content>
+  </entry>
+  
+</feed>
