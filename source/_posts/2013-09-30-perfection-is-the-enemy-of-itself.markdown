@@ -8,7 +8,6 @@ categories:
     - Philosophical
     - Uncited work
     - Slightly Rambling
-published: false
 ---
 
 A bold title for a personal essay but a thought which has been kicking around the back of my mind for a while now.
@@ -151,7 +150,7 @@ The single minded pursuit has resulted in a worse outcome than the somewhat lack
 Upon answering the topic I will now seek to expand upon some possible strategies as a result of this.
 These strategies are intended primarily for myself.
 As I mentioned in the introduction to this essay, I'm a terrible procrastinator in certain situations and it is something which I am desperately seeking to fix.
-The broad strategies I wish to consider include cognitive displacement, inwards search, active procrastination and domain broadening.
+The broad strategies I wish to consider include cognitive displacement, inwards search and active procrastination.
 These are names which I have completely made up on the spot and as there is nothing new under the sun I've likely plagiarised these off someone.
 Oh well, I don't care.
 
@@ -202,5 +201,110 @@ The long answer is that this time is whatever you want it to be.
 All that I am recommending is that you make the time.
 Find some peace, quiet and solitude, and simply unwind and be yourself for the day.
 You may hate this, you may love this, but either way I highly recommend that you try it at least a few times.
+Do note, that initially you will find it very difficult to still your mind to the distractions.
+You have most likely ingrained the habit of always being aware deep into your subconscious.
+This will take time to rectify.
+I personally like to take this time to stretch as well, I know that it's meant to be a period of absolute stillness but I find the deep stretch to be personally helpful.
 
 The next topic of consideration is active procrastinations.
+We all procrastinate to differing degrees and we do it in a number of different ways.
+Here, we must take a two pronged look at the issue.
+The first prong tackles the why of procrastination, it is thoroughly worthwhile to justify to yourself why you are undertaking a particular issue.
+You'll likely find yourself unable to answer.
+However, the caveat here is that you're most likely going to be in the mood where you just don't care that much.
+Thus, it becomes very hard to break outside of the vicious feed back loop which arises.
+You procrastinate because you're stressed and worn down.
+Because you procrastinated you feel even more stressed, you push yourself harder, become more anxious and get even more worn down.
+This causes you to procrastinate more.
+Rinse, repeat ad infinitum.
+
+Another name for this is burnout.
+
+How can we tackle this issue?
+I want the answer to this question just as much as you do.
+I have a very serious battle with procrastination, the feedback loop I was describing above is what I'm currently experiencing.
+
+The strategy I'm going to try is to take more breaks, earlier.
+Broadly, target my productive periods into shortened super intensity periods where I attempt to reach a state of flow.
+In the in between stages I want to reach a state of active procrastination, which I will define later.
+Intense focus is not required for hour upon hour.
+Instead, it is necessary to fully form the mental puzzle of a problem in peace and quiet.
+Solve said puzzle, and then let it go from your mind.
+Once you have tackled this issue relax and reach into some less cognitively intensive tasks.
+
+What I am currently stuck in is the awful middle ground.
+I am never truly at rest.
+Yet, I am never truly at my best.
+Instead, I meander through a middle ground of low efficiency and poor cognitive awareness.
+This stops me from relaxing, exhausts me and wears me down considerably.
+This, is my attempt at changing this behavioural pattern.
+
+The second prong is to look at the how we are procrastinating.
+What activities are currently being used as a procrastination aid in this respects.
+For me, my weakness is rapid content websites such as news sites, reddit, hacker news et cetera.
+These sites are like kryptonite to me.
+I love being continuously exposed to information, new ideas and new topics.
+It stimulates me, and that therein is the problem.
+
+I need to wean myself off my information crack.
+To initially accomplish this I'm deleting my tablet apps which have this purpose.
+Setting up custom hosts files on my computer and installing a website blocker.
+I'm going to be using the Chrome extension StayFocusd for this.
+Ideally the goal is that I just get off the internet in general.
+It is good for some things, but it isn't healthy to live your whole life through it.
+
+This is my personal procrastination method.
+It has limited value to me personally so I need to replace it.
+Here, we introduce the concept of Active Procrastination.
+This idea goes hand in hand with the earlier concepts introduced of having a super intensity period followed with lulls.
+Here, Active Procrastination serves to fill those lulls.
+
+The following is a list of activities which I consider to be worthy of consideration for the lulls and Active Procrastination.
+Your own definitions will obviously differ, so be an adult and write your own list.
+
+- Weight Training
+- Cooking something new (Not repeating an easy recipe)
+- Reading
+- Writing non seriously
+- Stretching, Yoga, Meditation, Mindfulness
+- Music Instruments
+- Walking
+- Socialising
+- Urban Exploring
+- Hiking/Tramping
+- Photography
+- Drawing/Painting/Caligraphy
+- Programming
+- Mechanical Maintenance (e.g. Car/Motorbike/Bicycle etc)
+
+In addition the following is a list of activities which fit a grey area.
+I include them because they definition is not hard and fast and they do improve life in some shape or form.
+However, some people do use this as procrastination aids.
+
+- Cleaning
+- Rote Cooking (E.g. something simple and easy to make)
+- Busy work
+- Shopping (When not taken to excess, everyone needs new clothes)
+
+The remainder should be cut from the life where possible.
+
+- Mindless internet browsing
+- Rapidly paced content driven websites (e.g. aggregators, news websites, youtube, twitter, facebook)
+- Excessive masturbation (Key word being excessive)
+- Pornography usage (Nothing against it personally, it is included as many people, guys especially, use it as a time filler, this may fit a grey area for some people.)
+- Debating people on the internet. Just don't.
+- Television
+- Gossip Magazines
+- Most forums
+
+The reader should begin to notice a clear trend occurring in the three different types.
+The goal of active procrastination is replace unhealthy habits with healthier ones.
+This time then becomes self improvement time, makes you a more interesting person and should hopefully make you happier.
+All of the content on the cut list is essentially modern day soma, cutting you off from the world you live in and replacing it with a fake world of manufactured bliss.
+I will write more about these concepts at a later date however.
+
+This I'm afraid brings this very long post to a close.
+I have rambled off the initial topic somewhat.
+That is to be expected when it's late at night and you're reaching close to the 4k word mark however.
+I will expand in more depths upon some of the points in this essay at a later date.
+I may also revise this essay somewhat as I take the time to proof read it in the future.
