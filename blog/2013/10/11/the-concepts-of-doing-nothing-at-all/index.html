@@ -5,12 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Setting up Octopress with Ubuntu - My Escape</title>
+  <title>The concepts of doing nothing at all - My Escape</title>
   <meta name="author" content="Nigel Cleland">
 
   
-  <meta name="description" content="Right, so this post will serve as a general overview as to a couple of the difficulties I had when setting up Octopress and Ruby.
-I mainly use Python &hellip;">
+  <meta name="description" content="What is the act of doing nothing?
+When we are doing nothing, are we truly doing nothing?
+Is this a problem? Three very simple questions yet quite &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +20,7 @@ I mainly use Python &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://NigelCleland.github.io/blog/2013/05/08/setting-up-octopress">
+  <link rel="canonical" href="http://NigelCleland.github.io/blog/2013/10/11/the-concepts-of-doing-nothing-at-all">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="My Escape" type="application/atom+xml">
@@ -69,7 +70,7 @@ I mainly use Python &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Setting Up Octopress With Ubuntu</h1>
+      <h1 class="entry-title">The Concepts of Doing Nothing at All</h1>
     
     
       <p class="meta">
@@ -85,56 +86,58 @@ I mainly use Python &hellip;">
   
 
 
-<time datetime="2013-05-08T19:41:00+12:00" pubdate data-updated="true">May 8<span>th</span>, 2013</time>
+<time datetime="2013-10-11T13:37:00+13:00" pubdate data-updated="true">Oct 11<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Right, so this post will serve as a general overview as to a couple of the difficulties I had when setting up Octopress and Ruby.
-I mainly use Python for my day to day analysis work and as such have little experience with Ruby.
-I used rbenv for my installation and a couple issues arose which were a bit of a pain to sort out as googling appeared to let me down here.</p>
+<div class="entry-content"><p>What is the act of doing nothing?
+When we are doing nothing, are we truly doing nothing?
+Is this a problem?</p>
+
+<p>Three very simple questions yet quite possibly without a simple answer.
+I intend to explore each of these short questions at times individually, at times together in the hope of coming to an answer.
+The art of doing nothing, and it is an art, is something which has been lost to many within society as it requires a somewhat maligned train of thought to reach it.</p>
 
 <!-- more -->
 
 
-<p>So a couple things. If you are using Ubuntu then you need to use .profile instead of .bash_profile.
-If done right the bottom two lines of the following should be.</p>
+<p>First, we must explore that the act of doing nothing is.
+I ask you to picture the last moment in time in which you had no mental cares, no physical need to do anything.
+You were safe, warm, most likely by yourself with full freedom to accomplish anything you set yourself to.
+Picture this moment, but discard any times when your mind was on other issues, social engagements or things which caused you stress.
+Discard any moment when you were worried about bills, worried about sex, about social drama, about the worried.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cat ~/.profile
-</span><span class='line'>
-</span><span class='line'>export PATH="$HOME/.rbenv/bin:$PATH
-</span><span class='line'>eval "$(rbenv init -)"</span></code></pre></td></tr></table></div></figure>
+<p>Include only those times when you were truly relaxed and, although I hesitate to use the phrase, at peace.
+If you are like me, and I would assume most of society this period of time is as much myth as reality.
+Yet, it seems so simple.
+This is what I mean when I speak of nothing.
+In my mind, this act is so important as it presents an opportunity to disengage from the world around us.
+To metaphorically recharge ourselves and to place ourselves in a situation where we may be relaxed.</p>
 
+<p>This concern with the act of nothing may appear strange but I assure you I have very good reasons.
+Most particularly, I have great difficulties with being overwhelmed by what I need to do and what is expected of me.
+I typically do not have many issues performing once I set myself to the task, but the initial beginning phase is the hardest to me, and I often become anxious about this.
+Hence, I am seeking to place my thoughts about nothingness into terrible prose, so that I may hopefully reach that state myself.</p>
 
-<p></p>
+<p>Why is this important?
+All of those occasions when you cannot relax, when the stress and worries of the day are with you take something from you.
+The rob you of your mental alertness, your ability to process new information and introduce negative thoughts into your life.
+None of these outcomes are desirable, if they are desirable to you I suggest you visit some serious professionals.</p>
 
-<p>Another issue which may arise is the difference between the system, and rbenv ruby installation.
-The commands you are looking for here are as follows.</p>
+<p>So I propose a challenge to both myself and the zero other people who read this.
+Practice, at least once per day the art of switching off and doing absolutely nothing.
+Practice emptying your mind and letting go of the bullshit.
+It&rsquo;s not important.
+Really, it isn&rsquo;t, and it&rsquo;s stopping you from tackling the things which are important.
+So practice, just a few minutes, or longer, but at least once.
+Build it into a system, a habit, don&rsquo;t make it a goal.
+Simply make it something you do and see if the results are as you expect.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rbenv versions # Will list the installed versions of rbenv
-</span><span class='line'>rbenv local &lt;build&gt; # Will set a local version of ruby for the specific folder
-</span><span class='line'>rbenv global &lt;build&gt; # Specify the global build of ruby to use.
-</span><span class='line'>ruby --version # List the current version of ruby</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I recommend playing around with each of these commands until you&rsquo;re comfortable switching between different versions of ruby.
-In my initial installations I was having a lot of difficulty with different versions of ruby in different locations.
-Generally, just a major annoyance to say the least.</p>
-
-<p>Once these two issues were sorted out installation was pretty simple overall.
-Hopefully if anyone else is having similar difficulties this post may point them in the right direction.</p>
-
-<p>I&rsquo;ll update this post if needed or if I remember something new.</p>
+<p>I&rsquo;m certainly going to try, because I&rsquo;m tired of being tired and overwhelmed.
+It&rsquo;s just no fun.</p>
 </div>
 
 
@@ -157,12 +160,12 @@ Hopefully if anyone else is having similar difficulties this post may point them
   
 
 
-<time datetime="2013-05-08T19:41:00+12:00" pubdate data-updated="true">May 8<span>th</span>, 2013</time>
+<time datetime="2013-10-11T13:37:00+13:00" pubdate data-updated="true">Oct 11<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/octopress/'>octopress</a>, <a class='category' href='/blog/categories/rbenv/'>rbenv</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+    <a class='category' href='/blog/categories/essay/'>Essay</a>, <a class='category' href='/blog/categories/pseudo-philosophy/'>pseudo philosophy</a>, <a class='category' href='/blog/categories/semi-rambling/'>semi rambling</a>
   
 </span>
 
@@ -171,7 +174,7 @@ Hopefully if anyone else is having similar difficulties this post may point them
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://NigelCleland.github.io/blog/2013/05/08/setting-up-octopress/" data-via="" data-counturl="http://NigelCleland.github.io/blog/2013/05/08/setting-up-octopress/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://NigelCleland.github.io/blog/2013/10/11/the-concepts-of-doing-nothing-at-all/" data-via="" data-counturl="http://NigelCleland.github.io/blog/2013/10/11/the-concepts-of-doing-nothing-at-all/" >Tweet</a>
   
   
   
@@ -180,8 +183,8 @@ Hopefully if anyone else is having similar difficulties this post may point them
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2013/09/30/perfection-is-the-enemy-of-itself/" title="Previous Post: Perfection is the enemy of itself">&laquo; Perfection is the enemy of itself</a>
       
-        <a class="basic-alignment right" href="/blog/2013/05/09/introduction-and-blog-content/" title="Next Post: Introduction and blog content">Introduction and blog content &raquo;</a>
       
     </p>
   </footer>
@@ -276,8 +279,8 @@ Hopefully if anyone else is having similar difficulties this post may point them
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://NigelCleland.github.io/blog/2013/05/08/setting-up-octopress/';
-        var disqus_url = 'http://NigelCleland.github.io/blog/2013/05/08/setting-up-octopress/';
+        var disqus_identifier = 'http://NigelCleland.github.io/blog/2013/10/11/the-concepts-of-doing-nothing-at-all/';
+        var disqus_url = 'http://NigelCleland.github.io/blog/2013/10/11/the-concepts-of-doing-nothing-at-all/';
         var disqus_script = 'embed.js';
       
     (function () {
