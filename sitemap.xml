@@ -2,86 +2,90 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://NigelCleland.github.io/blog/2013/05/08/setting-up-octopress/</loc>
-        <lastmod>2013-05-12T13:54:31+12:00</lastmod>
+        <lastmod>2013-10-18T08:47:57+13:00</lastmod>
     </url>
     <url>
         <loc>http://NigelCleland.github.io/blog/2013/05/09/introduction-and-blog-content/</loc>
-        <lastmod>2013-05-12T13:54:42+12:00</lastmod>
+        <lastmod>2013-10-18T08:47:57+13:00</lastmod>
     </url>
     <url>
         <loc>http://NigelCleland.github.io/blog/2013/05/12/selecting-data-with-pandas/</loc>
-        <lastmod>2013-05-16T13:53:08+12:00</lastmod>
+        <lastmod>2013-10-18T08:47:57+13:00</lastmod>
     </url>
     <url>
         <loc>
             http://NigelCleland.github.io/blog/2013/05/16/tutorial-series-using-pandas-groupby-to-simplify-your-life/
         </loc>
-        <lastmod>2013-05-16T13:51:22+12:00</lastmod>
+        <lastmod>2013-10-18T08:47:57+13:00</lastmod>
     </url>
     <url>
         <loc>
             http://NigelCleland.github.io/blog/2013/05/18/tutorial-series-merging-series-with-pandas/
         </loc>
-        <lastmod>2013-05-18T19:34:16+12:00</lastmod>
+        <lastmod>2013-10-18T08:47:57+13:00</lastmod>
     </url>
     <url>
         <loc>
             http://NigelCleland.github.io/blog/2013/05/20/why-researchers-should-strive-to-develop-repeatable-code/
         </loc>
-        <lastmod>2013-05-20T15:40:18+12:00</lastmod>
+        <lastmod>2013-10-18T08:47:57+13:00</lastmod>
     </url>
     <url>
         <loc>http://NigelCleland.github.io/blog/2013/05/27/what-im-currently-working-on/</loc>
-        <lastmod>2013-05-27T21:11:42+12:00</lastmod>
+        <lastmod>2013-10-18T08:47:57+13:00</lastmod>
     </url>
     <url>
         <loc>
             http://NigelCleland.github.io/blog/2013/06/01/experimenting-with-flask-and-web-development/
         </loc>
-        <lastmod>2013-06-01T20:47:35+12:00</lastmod>
+        <lastmod>2013-10-18T08:47:57+13:00</lastmod>
     </url>
     <url>
         <loc>
             http://NigelCleland.github.io/blog/2013/06/03/custom-latex-chapter-heading-with-image/
         </loc>
-        <lastmod>2013-06-03T20:01:39+12:00</lastmod>
+        <lastmod>2013-10-18T08:47:57+13:00</lastmod>
     </url>
     <url>
         <loc>http://NigelCleland.github.io/blog/2013/06/07/on-bittorrent-sync/</loc>
-        <lastmod>2013-06-07T12:46:18+12:00</lastmod>
+        <lastmod>2013-10-18T08:47:57+13:00</lastmod>
     </url>
     <url>
         <loc>http://NigelCleland.github.io/blog/2013/08/11/update/</loc>
-        <lastmod>2013-08-11T16:29:20+12:00</lastmod>
+        <lastmod>2013-10-18T08:47:57+13:00</lastmod>
     </url>
     <url>
         <loc>
             http://NigelCleland.github.io/blog/2013/09/10/custom-cookie-cutter-python-templates/
         </loc>
-        <lastmod>2013-09-27T11:19:45+12:00</lastmod>
+        <lastmod>2013-10-18T08:47:57+13:00</lastmod>
     </url>
     <url>
         <loc>
             http://NigelCleland.github.io/blog/2013/09/30/perfection-is-the-enemy-of-itself/
         </loc>
-        <lastmod>2013-10-03T20:48:59+13:00</lastmod>
+        <lastmod>2013-10-18T08:47:57+13:00</lastmod>
     </url>
     <url>
         <loc>
             http://NigelCleland.github.io/blog/2013/10/11/the-concepts-of-doing-nothing-at-all/
         </loc>
-        <lastmod>2013-10-16T21:55:45+13:00</lastmod>
+        <lastmod>2013-10-18T08:47:57+13:00</lastmod>
     </url>
     <url>
         <loc>http://NigelCleland.github.io/robots.txt</loc>
         <lastmod>2013-05-08T11:54:14+12:00</lastmod>
     </url>
     <url>
+        <loc>http://NigelCleland.github.io/blog/categories/</loc>
+        <lastmod>2013-10-18T08:47:57+13:00</lastmod>
+    </url>
+    <url>
         <loc>http://NigelCleland.github.io/blog/archives/</loc>
-        <lastmod>2013-10-16T21:55:45+13:00</lastmod>
+        <lastmod>2013-10-18T08:47:57+13:00</lastmod>
     </url>
     <url>
         <loc>http://NigelCleland.github.io/</loc>
-        <lastmod>2013-10-16T21:55:45+13:00</lastmod>
+        <lastmod>2013-10-18T08:47:57+13:00</lastmod>
     </url>
 </urlset>
