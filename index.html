@@ -9,8 +9,7 @@
 	<meta name="author" content="Nigel Cleland">
 
 	
-	<meta name="description" content="Oct 16th, 2013 Musings, Semi Rambling, Systems Thinking Systems vs. Goals A goal is a predefined milestone which you hope to achieve.
-A system is a &hellip;">
+	<meta name="description" content="Dec 10th, 2013 Running Uberwriter From the Command Line Uberwriter is a beautiful markdown textwriter which has two greater features I find &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -94,6 +93,73 @@ A system is a &hellip;">
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-10T16:14:00+13:00" data-updated="true" itemprop="datePublished">Dec 10<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/12/10/running-uberwrite-from-the-command-line/" itemprop="url">Running Uberwriter From the Command Line</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Uberwriter is a beautiful markdown textwriter which has two greater features I find essential for writing.</p>
+
+<ol>
+<li>Full screen mode</li>
+<li>Focus mode</li>
+</ol>
+
+
+<p>Full screen mode does exactly what you&rsquo;d expect it to. But Focus mode is something quite cool. It will automatically keep the sentence you are writing, and the line you are on highlighted and centered. It then dulls the outside text.</p>
+
+<p>In terms of actually writing it is exceptional. Terrible for editing though but that&rsquo;s expected. Unfortunately uberwriter doesn&rsquo;t come with a command line expression when it is installed. Furthermore it is installed in a slightly weird location.</p>
+
+<p>The command you need to run uberwriter is:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/opt/extras.ubuntu.com/uberwriter/bin/uberwriter</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I prefer to keep such commands as an alias as it makes life on my own computer much easier at the expense of working on others much more difficult.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>subl ~/.bash_aliases</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then add a line:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>alias "uber=/opt/extras.ubuntu.com/uberwriter/bin/uberwriter"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now you can use uberwriter from the command line just by typing uber and a filename, or by itself.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>uber /path/to/super/awesome/file.md</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Hope this is helpful to anyone</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -433,44 +499,6 @@ I&rsquo;ve never done web dev before and it has been an interesting learning exp
 
 		
 		<a href="/blog/2013/05/27/what-im-currently-working-on/" class="more-link">Read on &rarr;</a>
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-20T11:06:00+12:00" data-updated="true" itemprop="datePublished">May 20<span>th</span>, 2013</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/research/'>research</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2013/05/20/why-researchers-should-strive-to-develop-repeatable-code/" itemprop="url">Why Researchers Should Strive to Develop Repeatable Code</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>As a researcher you&rsquo;ll often have to conduct a lot of smaller experiments, testing out a hypothesis here, running some data analysis there. Yet a lot of people I know, and I am personally guilty of this as well, do not make these scripts repeatable. Writing smart, testable, repeatable code takes longer and for many researchers who code out of necessity, not out of love it is not as intuitive. In many undergraduate degrees, particularly in engineering, the goal throughout the course of study is more to finish the assignment, pass the paper and repeatability be damned.</p>
-
-<p>However, this behaviour becomes counterproductive once you start researching. I cannot imagine the number of hours I have wasting having to repeat useless boiler plate, hard coded examples when some intelligent preparation work, although taking a bit longer initially would save me far more time in the long run.</p>
-
-
-		
-		<a href="/blog/2013/05/20/why-researchers-should-strive-to-develop-repeatable-code/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>

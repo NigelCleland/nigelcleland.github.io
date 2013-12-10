@@ -4,7 +4,7 @@
   <title><![CDATA[My Escape]]></title>
   <link href="http://NigelCleland.github.io/atom.xml" rel="self"/>
   <link href="http://NigelCleland.github.io/"/>
-  <updated>2013-10-19T09:50:23+13:00</updated>
+  <updated>2013-12-10T16:19:41+13:00</updated>
   <id>http://NigelCleland.github.io/</id>
   <author>
     <name><![CDATA[Nigel Cleland]]></name>
@@ -12,6 +12,51 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Running uberwriter from the command line]]></title>
+    <link href="http://NigelCleland.github.io/blog/2013/12/10/running-uberwrite-from-the-command-line/"/>
+    <updated>2013-12-10T16:14:00+13:00</updated>
+    <id>http://NigelCleland.github.io/blog/2013/12/10/running-uberwrite-from-the-command-line</id>
+    <content type="html"><![CDATA[<p>Uberwriter is a beautiful markdown textwriter which has two greater features I find essential for writing.</p>
+
+<ol>
+<li>Full screen mode</li>
+<li>Focus mode</li>
+</ol>
+
+
+<p>Full screen mode does exactly what you&rsquo;d expect it to. But Focus mode is something quite cool. It will automatically keep the sentence you are writing, and the line you are on highlighted and centered. It then dulls the outside text.</p>
+
+<p>In terms of actually writing it is exceptional. Terrible for editing though but that&rsquo;s expected. Unfortunately uberwriter doesn&rsquo;t come with a command line expression when it is installed. Furthermore it is installed in a slightly weird location.</p>
+
+<p>The command you need to run uberwriter is:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/opt/extras.ubuntu.com/uberwriter/bin/uberwriter</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I prefer to keep such commands as an alias as it makes life on my own computer much easier at the expense of working on others much more difficult.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>subl ~/.bash_aliases</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then add a line:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>alias "uber=/opt/extras.ubuntu.com/uberwriter/bin/uberwriter"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now you can use uberwriter from the command line just by typing uber and a filename, or by itself.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>uber /path/to/super/awesome/file.md</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Hope this is helpful to anyone</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Systems vs. Goals]]></title>
